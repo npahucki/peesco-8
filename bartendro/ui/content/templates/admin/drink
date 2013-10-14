@@ -1,0 +1,108 @@
+{% extends 'admin/layout' %}
+{% block body %}
+<div class="row-fluid">
+    <div class="span6">
+        <h2>{{ title }}</h2>
+        {% if saved %}
+           <p>Your changes have been saved.</p>
+        {% endif %}
+        <div class="forms">
+            <form method="POST" action="/admin/drink/save">
+                <div>
+                    {{ form.drink_name.label }}:<br/> 
+                    {{ form.drink_name(class="form-element") }}
+                </div>
+                {% if form.drink_name.errors %}
+                    <div class="errors">{% for error in form.drink_name.errors %}<li>{{ error }}</li>{% endfor %}</div>
+                {% endif %}
+                <div>
+                    {{ form.desc.label }}:<br/> 
+                    {{ form.desc(class="form-element") }}
+                </div>
+                {% if form.desc.errors %}
+                    <div class="errors">{% for error in form.desc.errors %}<li>{{ error }}</li>{% endfor %}</div>
+                {% endif %}
+
+                <div style="padding-bottom: 20px">
+                    {{ form.popular(class="checkbox") }}
+                    {{ form.popular.label }}
+                </div>
+                {% if form.popular.errors %}
+                    <div class="errors">{% for error in form.popular.errors %}<li>{{ error }}</li>{% endfor %}</div>
+                {% endif %}
+
+                <div style="padding-bottom: 20px">
+                    {{ form.available(class="checkbox-large") }}
+                    {{ form.available.label }}
+                </div>
+                {% if form.available.errors %}
+                    <div class="errors">{% for error in form.available.errors %}<li>{{ error }}</li>{% endfor %}</div>
+                {% endif %}
+
+                {% for name, parts, id, show in fields %}
+                    {% if show %}
+                        <div class="booze-line" id="bl_{{ loop.index0 }}">
+                    {% else %}
+                        <div class="booze-line-hidden" id="bl_{{ loop.index0 }}">
+                    {% endif %}
+                        <div>
+                            {{ form[id]() }}
+                            {{ form[name](class="select-field", style="width:75%") }}
+                            {{ form[parts](class="edit-field") }}
+                            {% if form[parts].errors %}
+                                <div class="errors">{% for error in form[parts].errors %}<li>{{ error }}</li>{% endfor %}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {{ form.id() }}
+                <div>
+                    <a class="btn btn-large" onclick="add_booze()">add booze</a>
+                    <a class="btn btn-large" onclick="cancel()">cancel</a>
+                    {{ form.save(class="btn btn-large btn-primary") }}
+                </div>
+            </form>
+	</div>
+    </div>
+    <div class="span6">
+        <div style="float: right; padding-top: 10px">
+        <a href="/admin/drink" class="btn btn-large">add new drink</a>
+        </div>
+        <h2>drink list</h2>
+	<table class="table table-striped table-bordered">
+            {% for drink in drinks %}
+              <tr><td><a href="/admin/drink/edit/{{drink.id}}">{{ drink.name.name }}</a></td></tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+var max_boozes = 20;
+function add_booze()
+{
+    var i = 0;
+
+    for(i = 0; i < max_boozes; i++)
+    {
+        if ( $("#bl_" + i).attr("class") == "booze-line-hidden" )
+        {
+            $("#bl_" + i).toggleClass("booze-line-hidden");
+            $("#bl_" + i).toggleClass("booze-line");
+            return;
+        }
+    }
+    if (i == max_boozes)
+        alert("DOM problem. Don't know where to add booze div.");
+}
+function available(state)
+{
+    $.ajax({ url: "/ws/drink/0/available/" + state });
+}
+function cancel()
+{
+    window.location.reload();
+}
+
+</script>
+{% endblock %}

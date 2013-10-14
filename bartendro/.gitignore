@@ -1,0 +1,13 @@
+*.pyc
+*.pyo
+*.swp
+*.db
+.DS_Store
+*.obj
+*.o
+*.map
+*.hex
+*.ar
+ui/logs
+dispenser/old
+master/old

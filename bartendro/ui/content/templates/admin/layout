@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ title }}</title>
+  <link rel="stylesheet" type="text/css" href="/static/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/static/bartendro.css">
+  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.8.24/themes/base/jquery-ui.css" />
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/static/images/icon.ico">
+</head>
+<body>
+<div class="navbar navbar-inverse">
+    <div class="navbar-inner">
+        <a class="brand" href="#">admin</a>
+        <ul class="nav">
+            <li><a href="/">menu</a></li>
+            {% if current_user.is_authenticated() %}
+                <li><a href="/admin">dispensers</a></li>
+                <li><a href="/admin/drink">drinks</a></li>
+                <li><a href="/admin/booze">booze</a></li>
+                <li><a href="/admin/options">options</a></li>
+                <li><a href="/admin/liquidout">liquid out</a></li>
+                <li><a href="/admin/logout">logout</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+<div class="container-fluid">
+    {% block body %}{% endblock %}
+</div>
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/js/jquery.tmpl.min.js"></script>
+<script type="text/javascript">
+function home()
+{
+    window.location = "/";
+}
+function admin()
+{
+    window.location = "/admin";
+}
+</script>
+</body>
+</html>

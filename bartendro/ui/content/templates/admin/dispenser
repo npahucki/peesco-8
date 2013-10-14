@@ -1,0 +1,163 @@
+{% extends 'admin/layout' %}
+{% block body %}
+<div class="row-fluid">
+    <div class="span6">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <h2>Dispensers</h2>
+      {% if saved %}
+         <p>Your changes have been saved.</p>
+      {% endif %}
+    </div>
+    <div class="span6">
+       <div>
+          <a onclick="reset()" class="btn">reset</a>
+          <a onclick="test_dispensers()" class="btn" id="test-dispensers">test dispensers</a>
+          <a onclick="check_levels()" class="btn">liquid levels</a>
+          <a onclick="clean()" class="btn btn-danger">clean</a>
+       </div>
+       <div>
+           There are {{ count }} dispensers available. 
+       </div>
+    </div>
+</div>
+<div class="row-fluid">
+  <div class="span12">
+     <form method="POST" action="/admin/save">
+         {% for i in range(1, count + 1) %}
+            <div style="padding-bottom: 10px">
+                {% if states[i-1] == 1 %}
+                      {{ form["dispenser%s" % i].label(class="dispenser-out")}}: 
+                {% elif states[i-1] == 2 %}
+                      {{ form["dispenser%s" % i].label(class="dispenser-warning")}}: 
+                {% else %}
+                      {{ form["dispenser%s" % i].label(class="dispenser-ok")}}: 
+                {% endif %}
+                {{ form["dispenser%s" % i](class="form select-field") }}
+                <a class="btn btn-large" id="disp{{ i }}" onclick="toggle({{ i }})">turn on</a>
+                <a class="btn btn-large" id="test{{ i }}" onclick="test_dispense({{ i }})">dispense {{ options.test_dispense_ml }}ml</a>
+            </div>
+        {% endfor %}
+        <div>
+            {{ form.save(class="btn btn-large btn-primary") }}
+        </div>
+     </form>
+   </div>
+</div>
+<script type="text/javascript">
+var dispensers = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+
+function toggle(disp)
+{
+    if (disp < 1 || disp > 15)
+        return;
+
+    //$("#size_text").text(drink_size + " fluid ounces");
+
+    dispensers[disp-1] = !dispensers[disp-1];
+    $.ajax({
+            url: "/ws/dispenser/" + disp + "/" + (dispensers[disp-1] ? "on" : "off") ,
+            success: function(html)
+            {
+                if (dispensers[disp-1] == true)
+                    $("#disp" + disp).text('turn off');
+                else
+                    $("#disp" + disp).text('turn on');
+            }
+    });
+}
+function test_dispense(disp)
+{
+    if (disp < 1 || disp > 15)
+        return;
+
+    $("#test" + disp).text('dispensing');
+    $("#test" + disp).toggleClass('disabled');
+    $.ajax({
+            url: "/ws/dispenser/" + disp + "/test" ,
+            success: function(html)
+            {
+                $("#test" + disp).text('dispense {{ options.test_dispense_ml }}ml');
+                $("#test" + disp).toggleClass('disabled');
+            },
+            error: function(xhr, txtStatus, errorThrown)
+            {
+                 $("#test" + disp).text('dispense {{ options.test_dispense_ml }}ml');
+                 $("#test" + disp).toggleClass('disabled');
+                 alert("Failed test dispense.");
+            }
+    });
+}
+function reset()
+{
+    $.ajax({
+            url: "/ws/reset" ,
+            success: function(html)
+            {
+                window.location.reload();
+            }
+    });
+}
+function test_dispensers()
+{
+    $("#test-dispensers").text('testing...');
+    $("#test-dispensers").toggleClass('disabled');
+    $.ajax({
+            url: "/ws/test" ,
+            success: function(html)
+            {
+                if (html != "")
+                    alert(html);
+
+                $("#test-dispensers").text('test dispensers');
+                $("#test-dispensers").toggleClass('disabled');
+            },
+            error: function(xhr, txtStatus, errorThrown)
+            {
+                $("#test-dispensers").text('test dispensers');
+                $("#test-dispensers").toggleClass('disabled');
+                alert("Failed to test dispensers.");
+            }
+    });
+}
+function check_levels()
+{
+    $("#check_levels").text("checking levels...");
+    $("#check_levels").attr('disabled', true);
+    $.ajax({
+            url: "/ws/checklevels" ,
+            success: function(html)
+            {
+                 location.reload();
+            },
+            error: function(xhr, txtStatus, errorThrown)
+            {
+                 alert("Error checking levels. Useless error info: " + errorThrown);
+                 location.reload();
+            }
+    });
+}
+function clean()
+{
+    if (window.confirm("Remove all the hoses from the bottles. No alcohol fouls!"))
+    {
+        $.ajax({
+                url: "/ws/clean",
+                success: function(html)
+                {
+                },
+                error: function(xhr, txtStatus, errorThrown)
+                {
+                }
+        });
+    }
+}
+</script>
+{% endblock %}
