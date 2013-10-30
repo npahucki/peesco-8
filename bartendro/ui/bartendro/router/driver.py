@@ -376,9 +376,9 @@ class RouterDriver(object):
         if self.software_only: return True
         return self.send_packet32(dispenser, PACKET_PING, 0)
 
-    def start(self, dispenser):
+    def start(self, dispenser, speed=64):
         if self.software_only: return True
-        return self.send_packet8(dispenser, PACKET_SET_MOTOR_SPEED, 96, True)
+        return self.send_packet8(dispenser, PACKET_SET_MOTOR_SPEED, speed, True)
 
     def stop(self, dispenser):
         if self.software_only: return True
