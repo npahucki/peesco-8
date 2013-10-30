@@ -5,7 +5,7 @@ import serial
 import pololu
 
 # Connection to the Pi serial port
-ser=serial.Serial('/dev/cu.usbmodem00059921', 56000, timeout=1)
+ser=serial.Serial('/dev/ttyACM0', 56000, timeout=1)
 pol= pololu.Pololu(ser)
 
 indio1 = indio.Indio(pol,0,0)
