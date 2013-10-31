@@ -388,9 +388,9 @@ class RouterDriver(object):
         if self.software_only: return True
         return True
 
-    def dispense_ticks(self, dispenser, ticks, speed=64):
+    def dispense_ticks(self, dispenser, ticks, speed=100):
 	if self.software_only: return True
-        return self.send/_packet16(dispenser, PACKET_TICK_SPEED_DISPENSE, ticks, speed)
+        return self.send_packet16(dispenser, PACKET_TICK_SPEED_DISPENSE, ticks, speed)
 
     def led_off(self):
         if self.software_only: return True

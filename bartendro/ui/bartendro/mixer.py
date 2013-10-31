@@ -4,6 +4,7 @@ from threading import Thread
 from flask import Flask, current_app
 from flask.ext.sqlalchemy import SQLAlchemy
 import memcache
+import thread
 from sqlalchemy.orm import mapper, relationship, backref
 from bartendro import db, app
 from bartendro.model.drink import Drink
@@ -224,6 +225,18 @@ class Mixer(object):
         self.led_dispense()
         dur = 0
         active_disp = []
+
+        # A little display before dispensing -blocks until done
+        self.pre_dispense_dance(recipe)
+
+        # Make the indios that will dispense, standup 
+        for r in recipe:
+             indio = app.indios[r['dispenser'] - 1]
+             indio.center()
+             indio.stand()
+        sleep(2)                        # Make sure all indios are standing and create a little suspense 
+
+         # Now start the actual liquid flowing...
         for r in recipe:
             if r['dispenser_actual'] == 0:
                 r['ms'] = int(r['ml'] * TICKS_PER_ML)
@@ -233,28 +246,44 @@ class Mixer(object):
             app.log.info("..dispense %d for %d ticks" % (r['dispenser'] - 1, int(r['ms'])))
             active_disp.append(r['dispenser'])
             sleep(.01)
-
             if r['ms'] > dur: dur = r['ms']
 
-        current_sense = False
-        while True:
-            sleep(.1)
-            done = True
+        # Keep looping until all pumps are done or have a current sense error
+        swag_dir = False
+        while len(active_disp) > 0:
+            swag_dir = not swag_dir
+            sleep(.5)
+            # TODO: Make others dance in the meantime?
             for disp in active_disp:
+                indio = app.indios[disp -1]
                 is_disp, is_cs = self.driver.is_dispensing(disp - 1)
                 if is_cs:
-                    done = True
-                    current_sense = True
+                    app.log.error("Current sense detected on pump %d!" % disp)
+                    active_disp.remove(disp)
                     break
-
-                if is_disp: 
-                    done = False
-                    break
-            if done: break
-
-        if current_sense: 
-            print "Current sense detected!"
-
+                if is_disp:
+                    # Swing side to side
+                    if swag_dir:
+                        indio.center(20,15)
+                    else:
+                        indio.center(-20,15)
+                else:
+                    print "Pump %d is now done dispensing" % disp 
+                    # Shake off the liquid then sit
+                    def indio_done(indio):
+                        sleep(1)
+                        indio.center()
+                        indio.dick_shake(5, True)
+                        indio.sit();
+                    thread.start_new_thread(indio_done,(indio,))
+                    active_disp.remove(disp)
+                    
+        # Make sure all the indios are sitting and centered
+        sleep(2)
+        for indio in app.indios:
+            indio.sit();
+            indio.center();
+        
         self.led_complete()
         app.log.info("drink complete")
 
@@ -272,6 +301,30 @@ class Mixer(object):
 
     def clean(self):
         CleanCycle(self).start()
+
+    def pre_dispense_dance(self,recipe):
+        speed = 65
+        offset = 90
+        for idx, indio in enumerate(app.indios):
+            if(idx < len(app.indios) - 1):
+                indio.center(-offset, speed)
+            else: 
+                indio.center(offset, speed)
+            sleep(.5)
+        for idx, indio in enumerate(reversed(app.indios)):
+            if(idx < len(app.indios) - 1):
+                indio.center(offset, speed)
+            else:
+                indio.center(0, speed)
+                sleep(1)
+                indio.sit(50)
+                sleep(.5)
+                indio.sit();
+            sleep(.5)
+        for indio in app.indios:
+            indio.center()
+            indio.sit()
+        
 
 class CleanCycle(Thread):
     def __init__(self, mixer):

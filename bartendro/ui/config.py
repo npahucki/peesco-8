@@ -1,5 +1,5 @@
 # General bartendro options
-use_liquid_out_sensors = True
+use_liquid_out_sensors = False
 must_login_to_dispense = False
 login_name             = "bartendro"
 login_passwd           = "boozemeup"

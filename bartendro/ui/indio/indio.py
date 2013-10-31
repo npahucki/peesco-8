@@ -142,7 +142,7 @@ class Indio:
             time.sleep(.1)            
         self.center()
     
-    def __dick_shake(self, times):
+    def __dick_shake(self, times, sit_when_done=False):
 	    self.stand()
 	    for x in range(0, times):
 	        self.stand(20)
@@ -150,13 +150,14 @@ class Indio:
 	        self.stand(60)
 	        time.sleep(.1)
 	        self.stand()
+	    if sit_when_done:
+	        self.sit()
     
     def dick_shake(self,times, wait = False):
         if wait:
             self.__dick_shake(times)
         else:
            thread.start_new_thread( self.__dick_shake, (times,))
-
 
     def side_shake(self, times, wait = False):
         if wait:

@@ -39,7 +39,7 @@ else:
 
 try: 
     app.software_only = int(os.environ['BARTENDRO_SOFTWARE_ONLY'])
-    app.num_dispensers = 15
+    app.num_dispensers = 8
 except KeyError:
     app.software_only = 0
 
@@ -58,13 +58,21 @@ app.log = logging.getLogger('bartendro')
 try:
     ser=serial.Serial('/dev/ttyACM0', 56000, timeout=1)
     pol= pololu.Pololu(ser)
-    app.indio = indio.Indio(pol,0,0)
-    app.indio.side_shake(1, True)
-    app.indio.sit()
-    app.indio.center()
+    app.indios = [None] * 8
+    app.indios[0] = indio.Indio(pol,0,0)
+    app.indios[1] = indio.Indio(pol,0,1)
+    app.indios[2] = indio.Indio(pol,0,2)
+    app.indios[3] = indio.Indio(pol,0,3)
+    app.indios[4] = indio.Indio(pol,1,0)
+    app.indios[5] = indio.Indio(pol,1,1)
+    app.indios[6] = indio.Indio(pol,1,2)
+    app.indios[7] = indio.Indio(pol,1,3)
+    for indio in app.indios:
+        indio.sit()
+        indio.center()
 except RuntimeError as e:
     print
-    print "Cannot configure Indio:{0} - {1}".format(e.errno, e.strerror)
+    print "Cannot configure Indios:{0} - {1}".format(e.errno, e.strerror)
     print
     sys.exit(-1)
 
