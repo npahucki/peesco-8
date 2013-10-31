@@ -13,6 +13,8 @@ def ws_dispenser_on(disp):
     if app.options.must_login_to_dispense and not current_user.is_authenticated():
         return "login required"
 
+    app.indios[disp -1].stand()
+    sleep(.5)
     app.driver.start(disp - 1)
     return "ok\n"
 
@@ -22,15 +24,22 @@ def ws_dispenser_off(disp):
         return "login required"
 
     app.driver.stop(disp - 1)
+    sleep(1)
+    app.indios[disp-1].dick_shake(3, True);
+    app.indios[disp-1].sit();
     return "ok\n"
 
 @app.route('/ws/dispenser/<int:disp>/test')
 def ws_dispenser_test(disp):
+    app.indios[disp -1].stand()
+    sleep(.5)
     app.driver.dispense_ticks(disp - 1, app.options.test_dispense_ml * TICKS_PER_ML)
     while True:
         (is_dispensing, over_current) = app.driver.is_dispensing(disp - 1)
         if not is_dispensing: break
-	sleep(.1)
+	sleep(1)
+    app.indios[disp-1].dick_shake(3, True);
+    app.indios[disp-1].sit();
     return "ok\n"
 
 @app.route('/ws/clean')

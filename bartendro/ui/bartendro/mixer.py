@@ -325,7 +325,7 @@ class Mixer(object):
             indio.center()
             indio.sit()
         
-
+# TODO: Must raise indios during clean!
 class CleanCycle(Thread):
     def __init__(self, mixer):
         Thread.__init__(self)
