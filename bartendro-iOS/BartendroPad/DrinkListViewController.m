@@ -13,6 +13,7 @@
                                         UICollectionViewDelegateFlowLayout>
 
 @property(nonatomic, strong) NSMutableArray * drinkList;
+@property (strong, nonatomic) IBOutlet UICollectionView *DrinksMenu;
 
 @end
 
@@ -31,7 +32,7 @@
 
 #pragma mark - UICollectionView Datasource
 
-// 1
+
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
 //    NSString *searchTerm = self.searches[section];
 //    return [self.searchResults[searchTerm] count];
@@ -39,15 +40,13 @@
     return 20;
     
 }
-// 2
+
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
 //    return [self.searches count];
 
-    return 1;
-
-
+    return 2;
 }
-// 3
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -57,6 +56,24 @@
     return cell;
 }
 
+
+//- (UICollectionReusableView *)collectionView:
+// (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+// {
+// return [[UICollectionReusableView alloc] init];
+//}
+
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    // TODO: Select Item
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    // TODO: Deselect item
+}
 
 
 
