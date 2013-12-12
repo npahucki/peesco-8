@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 from time import sleep
 from bartendro import app, db
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask.ext.login import login_required, current_user
 from werkzeug.exceptions import ServiceUnavailable
 from bartendro.model.drink import Drink
 from bartendro.model.booze import Booze
 from bartendro.form.booze import BoozeForm
 from bartendro import constant
+
+import json
 
 @app.route('/ws/drink/<int:drink>')
 def ws_drink(drink):
@@ -35,3 +37,32 @@ def ws_drink_available(drink, state):
     db.session.flush()
     db.session.commit()
     return "ok\n"
+
+
+@app.route('/ws/drink/all')
+def ws_drink_all():
+    
+    drinks = db.session.query(Drink).order_by(Drink.id).all()
+    listDrinks = []
+    for drink in drinks:
+        listDrinks.append({ 'desc' : drink.desc.encode('utf8'),
+                            'id' : drink.id, 
+                            'name_id' : drink.name_id, 
+                            'sugg_size' : drink.sugg_size, 
+                            'popular' : drink.popular,
+                            'available' : drink.available 
+                            })
+    return json.dumps(listDrinks)    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
