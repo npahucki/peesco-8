@@ -21,6 +21,7 @@ class Drink(db.Model):
     popular = Column(Boolean)
     available = Column(Boolean)
 
+
     query = db.session.query_property()
 
     def __init__(self, desc = u'', data = None, size = DEFAULT_SUGGESTED_DRINK_SIZE, popular = False, available = True):
@@ -49,4 +50,4 @@ class Drink(db.Model):
 
     def __repr__(self):
         return "<Drink>(%d,%s,%s,%s)>" % (self.id or -1, self.name.name, self.desc, " ".join(["<DrinkBooze>(%d)" % (db.id or -1) for db in self.drink_boozes]))
-
+        

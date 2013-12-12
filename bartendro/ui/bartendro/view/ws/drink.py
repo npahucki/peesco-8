@@ -52,7 +52,7 @@ def ws_drink_all():
                             'popular' : drink.popular,
                             'available' : drink.available 
                             })
-    return json.dumps(listDrinks)    
+    return jsonify(DrinkList=listDrinks)    
     
     
     

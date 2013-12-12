@@ -22,6 +22,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://localhost:8080/ws/drink/all"
+      parameters:nil
+     
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSLog(@"JSON: %@", responseObject);
+         }
+     
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Error: %@", error);
+         }
+     ];
+
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
