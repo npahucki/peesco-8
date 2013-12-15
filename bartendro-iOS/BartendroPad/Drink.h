@@ -15,6 +15,9 @@
 @property (nonatomic, retain) NSNumber * drink_id;
 @property (nonatomic, retain) NSString * desc;
 @property (nonatomic, retain) NSNumber * name_id;
+
+@property (nonatomic, retain) NSString * name;
+
 @property (nonatomic, retain) NSNumber * sugg_size;
 @property (nonatomic, retain) NSNumber * popular;
 @property (nonatomic, retain) NSNumber * available;

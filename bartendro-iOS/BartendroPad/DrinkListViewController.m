@@ -12,7 +12,9 @@
                                         UICollectionViewDataSource,
                                         UICollectionViewDelegateFlowLayout>
 
-@property (strong, nonatomic) NSMutableArray * drinkList;
+@property (strong, nonatomic) NSMutableArray * topDrinkList;
+@property (strong, nonatomic) NSMutableArray * otherDrinkList;
+
 @property (strong, nonatomic) IBOutlet UICollectionView * DrinksMenu;
 
 @end
@@ -31,9 +33,16 @@
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              //NSLog(@"JSON: %@", responseObject);
              
+             NSArray * td = [[[responseObject objectForKey:@"AllDrinks"] objectAtIndex:0] objectForKey:@"topDrinks"];
+             NSArray * od = [[[responseObject objectForKey:@"AllDrinks"] objectAtIndex:1] objectForKey:@"otherDrinks"];
              
-             NSArray * l = [responseObject objectForKey:@"DrinkList"];
-             //[self fillDrinkListFromJSON:l];
+//             NSLog(@"top drinks  : %@", td);
+//             NSLog(@"Other drinks  : %@", td);
+             
+             
+             [self fillTopDrinkListFromJSON:td];
+             [self fillOtherDrinkListFromJSON:od];
+             
              
          }
      
@@ -44,10 +53,9 @@
 }
 
 
-- (void) fillDrinkListFromJSON:(NSArray *) jsonList{
+- (void) fillTopDrinkListFromJSON:(NSArray *) jsonList{
 
-    
-    self.drinkList = [[NSMutableArray alloc] init];
+    self.topDrinkList = [[NSMutableArray alloc] init];
     
     for (NSDictionary * dict in jsonList){
         
@@ -55,13 +63,38 @@
         
         Drink * d = [[Drink alloc] init];
         [d fillWithAttributes:dict];
-        [self.drinkList addObject:d];
+        [self.topDrinkList addObject:d];
     }
     
-    NSLog(@"We have %d drinks", [self.drinkList count]);
+    NSLog(@"We have %d Top drinks", [self.topDrinkList count]);
     [self.DrinksMenu reloadData];
     
 }
+
+
+- (void) fillOtherDrinkListFromJSON:(NSArray *) jsonList{
+    
+    
+    self.otherDrinkList = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary * dict in jsonList){
+        
+        //NSLog(@"dict: %@", dict);
+        
+        Drink * d = [[Drink alloc] init];
+        [d fillWithAttributes:dict];
+        [self.otherDrinkList addObject:d];
+    }
+    
+    NSLog(@"We have %d other drinks", [self.otherDrinkList count]);
+    [self.DrinksMenu reloadData];
+    
+}
+
+
+
+
+
 
 
 - (void)didReceiveMemoryWarning
@@ -77,7 +110,7 @@
 //    NSString *searchTerm = self.searches[section];
 //    return [self.searchResults[searchTerm] count];
     
-    return [self.drinkList count];
+    return [self.topDrinkList count];
     
 }
 
@@ -93,11 +126,13 @@
     DrinkCollectionViewCell * cell = [cv dequeueReusableCellWithReuseIdentifier:@"DrinkCell"
                                                                forIndexPath:indexPath];
     
-    Drink * d = [self.drinkList objectAtIndex:indexPath.row];
+    Drink * d = [self.topDrinkList objectAtIndex:indexPath.row];
     
     
     cell.backgroundColor = [UIColor whiteColor];
     cell.drinkDescription.text = d.desc;
+    cell.drinkName.text = d.name;
+
     
     return cell;
 }

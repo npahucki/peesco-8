@@ -13,6 +13,9 @@
 @synthesize drink_id;
 @synthesize desc;
 @synthesize name_id;
+
+@synthesize name;
+
 @synthesize sugg_size;
 @synthesize popular;
 @synthesize available;

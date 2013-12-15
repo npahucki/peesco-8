@@ -26,6 +26,9 @@
     
     self.drink_id  = @([[attributes valueForKeyPath:@"id"]        intValue]);
     self.desc      =    [attributes valueForKeyPath:@"desc"];
+
+    self.name      =    [attributes valueForKeyPath:@"name"];
+    
     self.name_id   = @([[attributes valueForKeyPath:@"name_id"]   intValue]);
     self.sugg_size = @([[attributes valueForKeyPath:@"sugg_size"] intValue]);
     self.popular   = @([[attributes valueForKeyPath:@"popular"]   intValue]);
