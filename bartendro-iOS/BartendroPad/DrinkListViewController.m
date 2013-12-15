@@ -92,11 +92,6 @@
 }
 
 
-
-
-
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -128,11 +123,7 @@
     
     Drink * d = [self.topDrinkList objectAtIndex:indexPath.row];
     
-    
-    cell.backgroundColor = [UIColor whiteColor];
-    cell.drinkDescription.text = d.desc;
-    cell.drinkName.text = d.name;
-
+    [cell populateUIwithDatafrom:d];
     
     return cell;
 }

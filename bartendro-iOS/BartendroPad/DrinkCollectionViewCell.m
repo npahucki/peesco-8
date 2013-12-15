@@ -10,6 +10,9 @@
 
 @implementation DrinkCollectionViewCell
 
+@synthesize drink;
+
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -28,6 +31,20 @@
 }
 */
 
+-(void)populateUIwithDatafrom:(Drink *)aDrink{
+
+    self.backgroundColor = [UIColor whiteColor];
+    self.drinkDescription.text = aDrink.desc;
+    self.drinkName.text = aDrink.name;
+    
+    [self setDrink:aDrink];
+
+}
+
+
 - (IBAction)pourDrink:(id)sender {
+    
+    NSLog(@"Pouring a drink called: %@", self.drink.name);
+    
 }
 @end
