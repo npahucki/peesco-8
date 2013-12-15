@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D65E4D0B185E5F5F00280DD2 /* HeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E4D0A185E5F5F00280DD2 /* HeaderCollectionReusableView.m */; };
 		D6A1B00A184EA9860095CD6C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6A1B009184EA9860095CD6C /* CoreData.framework */; };
 		D6A1B00D184EA9D60095CD6C /* Bartendro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D6A1B00B184EA9D60095CD6C /* Bartendro.xcdatamodeld */; };
 		D6A1B011184EAAFC0095CD6C /* Drink.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A1B010184EAAFC0095CD6C /* Drink.m */; };
@@ -43,6 +44,8 @@
 /* Begin PBXFileReference section */
 		05332AF241CA4D1499505A5D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F93F41D1EB04FD6A012E072 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		D65E4D09185E5F5F00280DD2 /* HeaderCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderCollectionReusableView.h; sourceTree = "<group>"; };
+		D65E4D0A185E5F5F00280DD2 /* HeaderCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderCollectionReusableView.m; sourceTree = "<group>"; };
 		D6A1B009184EA9860095CD6C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D6A1B00C184EA9D60095CD6C /* Bartendro.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bartendro.xcdatamodel; sourceTree = "<group>"; };
 		D6A1B00F184EAAFC0095CD6C /* Drink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drink.h; sourceTree = "<group>"; };
@@ -151,6 +154,8 @@
 				D6AD5333184E9717006D09F5 /* AppDelegate.m */,
 				D6AD5335184E9717006D09F5 /* Main_iPhone.storyboard */,
 				D6AD5338184E9717006D09F5 /* Main_iPad.storyboard */,
+				D65E4D09185E5F5F00280DD2 /* HeaderCollectionReusableView.h */,
+				D65E4D0A185E5F5F00280DD2 /* HeaderCollectionReusableView.m */,
 				D6E5432F18594E17003D5FD5 /* DrinkCollectionViewCell.h */,
 				D6E5433018594E17003D5FD5 /* DrinkCollectionViewCell.m */,
 				D6AD533B184E9717006D09F5 /* DrinkListViewController.h */,
@@ -328,6 +333,7 @@
 				D6AD533D184E9717006D09F5 /* DrinkListViewController.m in Sources */,
 				D6A1B011184EAAFC0095CD6C /* Drink.m in Sources */,
 				D6AD5334184E9717006D09F5 /* AppDelegate.m in Sources */,
+				D65E4D0B185E5F5F00280DD2 /* HeaderCollectionReusableView.m in Sources */,
 				D6A1B00D184EA9D60095CD6C /* Bartendro.xcdatamodeld in Sources */,
 				D6E5432E185945AA003D5FD5 /* Drink+Helper.m in Sources */,
 				D6AD5330184E9717006D09F5 /* main.m in Sources */,

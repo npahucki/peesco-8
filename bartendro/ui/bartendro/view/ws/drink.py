@@ -114,7 +114,7 @@ def ws_index():
                             
     otherDrinks = []
 
-    for drink in top_drinks:
+    for drink in other_drinks:
         otherDrinks.append({ 'desc' : drink.desc.encode('utf8'),
                             'id' : drink.id, 
                             'name' : drink.name.name

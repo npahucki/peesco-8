@@ -15,7 +15,7 @@
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dKT-jd-2Cc">
                             <size key="itemSize" width="744" height="189"/>
                             <size key="headerReferenceSize" width="50" height="50"/>
-                            <size key="footerReferenceSize" width="50" height="131"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
@@ -60,7 +60,7 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hQj-Jf-UH3">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="hQj-Jf-UH3" customClass="HeaderCollectionReusableView">
                             <rect key="frame" x="0.0" y="64" width="768" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -71,18 +71,9 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                        </collectionReusableView>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ipi-XY-gkW">
-                            <rect key="frame" x="0.0" y="303" width="768" height="131"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                            <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CONTROLES!!!!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yx9-Xu-owV">
-                                    <rect key="frame" x="327" y="47" width="122" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
+                            <connections>
+                                <outlet property="tituloHeader" destination="lWE-xK-ZDu" id="Ilr-15-JOr"/>
+                            </connections>
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="Kzp-hy-oF6" id="Rzz-Ou-fLP"/>

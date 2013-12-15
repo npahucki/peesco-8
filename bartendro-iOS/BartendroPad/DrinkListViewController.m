@@ -100,28 +100,66 @@
 
 #pragma mark - UICollectionView Datasource
 
-
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
 //    NSString *searchTerm = self.searches[section];
 //    return [self.searchResults[searchTerm] count];
+
     
-    return [self.topDrinkList count];
+    NSLog(@"Section: %d", section);
+    NSLog(@"topDrinkList: %d", [self.topDrinkList count]);
+    NSLog(@"otherDrinkList: %d", [self.otherDrinkList count]);
     
+    NSInteger retvalue = 0;
+    
+    switch (section) {
+        case 0:
+            
+           retvalue = [self.topDrinkList count];
+            
+            break;
+        case 1:
+            retvalue = [self.otherDrinkList count];
+            break;
+            
+        default:
+            retvalue = 0;
+            break;
+    }
+    
+    NSLog(@"Drinks %d para la section %d", retvalue, section);
+    
+    
+    return retvalue;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
 //    return [self.searches count];
-
-    return 1;
+    return 2;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     DrinkCollectionViewCell * cell = [cv dequeueReusableCellWithReuseIdentifier:@"DrinkCell"
-                                                               forIndexPath:indexPath];
+                                                                   forIndexPath:indexPath];
     
-    Drink * d = [self.topDrinkList objectAtIndex:indexPath.row];
+    Drink * d;
+    
+    NSLog(@"La row: %d", indexPath.row);
+    NSLog(@"La seccion: %d", indexPath.section);
+    
+    switch (indexPath.section) {
+        case 0:
+            d = [self.topDrinkList objectAtIndex:indexPath.row];
+            break;
+            
+        case 1:
+            d = [self.otherDrinkList objectAtIndex:indexPath.row];
+            break;
+            
+        default:
+            break;
+    }
     
     [cell populateUIwithDatafrom:d];
     
@@ -135,6 +173,35 @@
 // return [[UICollectionReusableView alloc] init];
 //}
 
+
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *reusableview = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        
+        HeaderCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+        
+        NSString *title;
+        
+        
+        if (indexPath.section == 0) {
+                title = [[NSString alloc] initWithFormat:@"Lo tipico"];
+        }
+        
+        if (indexPath.section == 1) {
+            title = [[NSString alloc] initWithFormat:@"Lo Esencial"];
+        }
+        
+        headerView.tituloHeader.text = title;
+        
+        reusableview = headerView;
+    }
+    
+    
+    return reusableview;
+}
 
 #pragma mark - UICollectionViewDelegate
 
