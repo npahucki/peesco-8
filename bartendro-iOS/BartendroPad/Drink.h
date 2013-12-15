@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+//#import <CoreData/CoreData.h>
 
 
-@interface Drink : NSManagedObject
+@interface Drink : NSObject
 
 @property (nonatomic, retain) NSNumber * drink_id;
 @property (nonatomic, retain) NSString * desc;

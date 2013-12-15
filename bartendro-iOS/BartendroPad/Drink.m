@@ -8,14 +8,13 @@
 
 #import "Drink.h"
 
-
 @implementation Drink
 
-@dynamic drink_id;
-@dynamic desc;
-@dynamic name_id;
-@dynamic sugg_size;
-@dynamic popular;
-@dynamic available;
+@synthesize drink_id;
+@synthesize desc;
+@synthesize name_id;
+@synthesize sugg_size;
+@synthesize popular;
+@synthesize available;
 
 @end

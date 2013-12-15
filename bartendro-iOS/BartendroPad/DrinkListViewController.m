@@ -12,8 +12,8 @@
                                         UICollectionViewDataSource,
                                         UICollectionViewDelegateFlowLayout>
 
-@property(nonatomic, strong) NSMutableArray * drinkList;
-@property (strong, nonatomic) IBOutlet UICollectionView *DrinksMenu;
+@property (strong, nonatomic) NSMutableArray * drinkList;
+@property (strong, nonatomic) IBOutlet UICollectionView * DrinksMenu;
 
 @end
 
@@ -24,21 +24,45 @@
     [super viewDidLoad];
     
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:@"http://localhost:8080/ws/drink/all"
+    
+    [manager GET:@"http://localhost:8080/ws/drink/dindex"
       parameters:nil
      
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             NSLog(@"JSON: %@", responseObject);
+             //NSLog(@"JSON: %@", responseObject);
+             
+             
+             NSArray * l = [responseObject objectForKey:@"DrinkList"];
+             //[self fillDrinkListFromJSON:l];
+             
          }
      
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
          }
      ];
+}
+
+
+- (void) fillDrinkListFromJSON:(NSArray *) jsonList{
 
     
+    self.drinkList = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary * dict in jsonList){
+        
+        //NSLog(@"dict: %@", dict);
+        
+        Drink * d = [[Drink alloc] init];
+        [d fillWithAttributes:dict];
+        [self.drinkList addObject:d];
+    }
+    
+    NSLog(@"We have %d drinks", [self.drinkList count]);
+    [self.DrinksMenu reloadData];
     
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -53,22 +77,28 @@
 //    NSString *searchTerm = self.searches[section];
 //    return [self.searchResults[searchTerm] count];
     
-    return 20;
+    return [self.drinkList count];
     
 }
 
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
 //    return [self.searches count];
 
-    return 2;
+    return 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"DrinkCell"
+    DrinkCollectionViewCell * cell = [cv dequeueReusableCellWithReuseIdentifier:@"DrinkCell"
                                                                forIndexPath:indexPath];
+    
+    Drink * d = [self.drinkList objectAtIndex:indexPath.row];
+    
+    
     cell.backgroundColor = [UIColor whiteColor];
+    cell.drinkDescription.text = d.desc;
+    
     return cell;
 }
 

@@ -19,7 +19,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DrinkCell" id="fsU-S6-MpM">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DrinkCell" id="fsU-S6-MpM" customClass="DrinkCollectionViewCell">
                                 <rect key="frame" x="12" y="114" width="744" height="189"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -40,6 +40,9 @@
                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="pourDrink:" destination="fsU-S6-MpM" eventType="touchUpInside" id="Zor-D7-3FG"/>
+                                            </connections>
                                         </button>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" text="Descripcion del trago a servir, esta puede venir con la lista de ingredientes, con que se puede tomar y como " translatesAutoresizingMaskIntoConstraints="NO" id="yIW-UW-uun">
                                             <rect key="frame" x="13" y="95" width="509" height="74"/>
@@ -51,6 +54,10 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <outlet property="drinkDescription" destination="yIW-UW-uun" id="eGy-tS-q9S"/>
+                                    <outlet property="drinkName" destination="WPo-hu-YOE" id="PcF-sI-yYH"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hQj-Jf-UH3">

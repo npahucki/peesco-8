@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Drink.h"
+#import "Drink+Helper.h"
+#import "DrinkCollectionViewCell.h"
 
 @interface DrinkListViewController : UICollectionViewController
 
