@@ -25,6 +25,14 @@
 {
     [super viewDidLoad];
     
+    [self getDrinkList];
+
+}
+
+
+
+-(void) getDrinkList{
+    
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
     
     [manager GET:@"http://localhost:8080/ws/drink/dindex"
@@ -36,8 +44,8 @@
              NSArray * td = [[[responseObject objectForKey:@"AllDrinks"] objectAtIndex:0] objectForKey:@"topDrinks"];
              NSArray * od = [[[responseObject objectForKey:@"AllDrinks"] objectAtIndex:1] objectForKey:@"otherDrinks"];
              
-//             NSLog(@"top drinks  : %@", td);
-//             NSLog(@"Other drinks  : %@", td);
+             //             NSLog(@"top drinks  : %@", td);
+             //             NSLog(@"Other drinks  : %@", td);
              
              
              [self fillTopDrinkListFromJSON:td];
@@ -50,6 +58,9 @@
              NSLog(@"Error: %@", error);
          }
      ];
+
+
+
 }
 
 
