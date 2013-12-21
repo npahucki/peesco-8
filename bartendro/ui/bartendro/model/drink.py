@@ -49,5 +49,5 @@ class Drink(db.Model):
         self.ingredients = ing
 
     def __repr__(self):
-        return "<Drink>(%d,%s,%s,%s)>" % (self.id or -1, self.name.name, self.desc, " ".join(["<DrinkBooze>(%d)" % (db.id or -1) for db in self.drink_boozes]))
+        return "<Drink>(%d,%s,%s,%s)>" % (self.id or -1, self.name.name.encode('utf8'), self.desc.encode('utf8'), " ".join(["<DrinkBooze>(%d)" % (db.id or -1) for db in self.drink_boozes]).encode('utf8')   )
         
