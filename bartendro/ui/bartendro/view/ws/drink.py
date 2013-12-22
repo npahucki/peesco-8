@@ -195,7 +195,7 @@ def drink_info(id):
 # ];
 
 
- #    print drink.ingredients
+#     print drink.ingredients
 # 	
 #     for ing in drink.ingredients:        
 #     	print { 
@@ -207,10 +207,6 @@ def drink_info(id):
 #         'taster_volume'  : 0,
 #         'type'           : ing['type']
 #         }
-    
-
-
-
 
 # for(i = 0; i < ing.length; i++)
 #         {
@@ -232,18 +228,6 @@ def drink_info(id):
 #                         window.location = "/";
 #                 }
 #         });
-
-
-    # print "Drink          : ", jsonDrink
-#     print "App.options    : ", app.options
-#     print "Title          : ", drink.name.name.encode('utf8')
-#     print "show_sweet_tart: ", show_sweet_tart	
-#     print "show_sobriety  : ", show_sobriety
-#     print "show_strength  : ", show_strength	
-
-
-
-
 
 
 

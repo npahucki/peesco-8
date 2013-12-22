@@ -20,4 +20,7 @@
 @synthesize popular;
 @synthesize available;
 
+@synthesize info;
+
+
 @end

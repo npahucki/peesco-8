@@ -21,5 +21,6 @@
 @property (nonatomic, retain) NSNumber * sugg_size;
 @property (nonatomic, retain) NSNumber * popular;
 @property (nonatomic, retain) NSNumber * available;
+@property (nonatomic, retain) NSDictionary * info;
 
 @end
