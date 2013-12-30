@@ -93,7 +93,9 @@ def ws_index():
                         .filter(Drink.popular == 1)  \
                         .filter(Drink.available == 1)  \
                         .order_by(DrinkName.name).all() 
+    
     top_drinks = filter_drink_list(can_make_dict, top_drinks)
+    
     process_ingredients(top_drinks)
 
     other_drinks = db.session.query(Drink) \
@@ -102,7 +104,9 @@ def ws_index():
                         .filter(Drink.popular == 0)  \
                         .filter(Drink.available == 1)  \
                         .order_by(DrinkName.name).all() 
+    
     other_drinks = filter_drink_list(can_make_dict, other_drinks)
+    
     process_ingredients(other_drinks)
 
 
@@ -111,7 +115,8 @@ def ws_index():
     for drink in top_drinks:
         topDrinks.append({ 'desc' : drink.desc.encode('utf8'),
                             'id' : drink.id, 
-                            'name' : drink.name.name
+                            'name' : drink.name.name,
+                            'ingredients' : drink.ingredients
                             })
                             
     otherDrinks = []
@@ -119,7 +124,8 @@ def ws_index():
     for drink in other_drinks:
         otherDrinks.append({ 'desc' : drink.desc.encode('utf8'),
                             'id' : drink.id, 
-                            'name' : drink.name.name
+                            'name' : drink.name.name,
+                            'ingredients' : drink.ingredients
                             })
   
 
