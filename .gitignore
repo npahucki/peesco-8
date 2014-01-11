@@ -1,3 +1,17 @@
 .*
 *.pyc
+*.xcodeproj/**
+!*.xcodeproj/*.pbxproj
 
+*.xcworkspace/**
+!*.xcworkspace/*.xcworkspacedata
+
+.idea
+
+Modules/*/*.xcodeproj/**
+!Modules/*/*.xcodeproj/*.pbxproj
+
+cpd-output.*
+
+Pods/
+Podfile.lock

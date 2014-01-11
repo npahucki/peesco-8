@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from bartendro import app, db
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask.ext.login import current_user
 from bartendro.model.drink import Drink
 from bartendro.model.booze import Booze
@@ -9,6 +9,8 @@ import time
 
 @app.route('/ws/shotbot')
 def ws_shotbot():
+    print "hola"
+    
     if app.options.must_login_to_dispense and not current_user.is_authenticated():
         return "login required"
 
@@ -33,3 +35,15 @@ def ws_shotbot():
 
 
     return "ok\n"
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

@@ -315,6 +315,7 @@ function make_drink(drink, is_taster)
             volume = is_taster ? ing[i].taster_volume.toFixed(0) : ing[i].volume.toFixed(0);
             args += volume;
         }
+        
         lb = '<div class="lb-box"><h1>';
         if (is_taster)
             lb += 'Now serving a taste of'

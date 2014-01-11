@@ -56,7 +56,10 @@ app.log = logging.getLogger('bartendro')
 
 # Config indio
 try:
-    ser=serial.Serial('/dev/ttyACM0', 56000, timeout=1)
+    if app.software_only:
+        ser=sys.stdout
+    else:
+        ser=serial.Serial('/dev/ttyACM0', 56000, timeout=1)
     pol= pololu.Pololu(ser)
     app.indios = [None] * 8
     app.indios[0] = indio.Indio(pol,0,0)
@@ -93,13 +96,12 @@ except SerialIOError:
     print_software_only_notice()
     sys.exit(-1)
 
+if app.software_only:
+    app.log.info("Running SOFTWARE ONLY VERSION. No communication between software and hardware chain will happen!")
 
 app.log.info("Found %d dispensers." % app.driver.count())
 
 app.mixer = mixer.Mixer(app.driver, app.mc)
-
-if app.software_only:
-    app.log.info("Running SOFTWARE ONLY VERSION. No communication between software and hardware chain will happen!")
 
 app.log.info("Bartendro starting")
 
