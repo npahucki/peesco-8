@@ -46,6 +46,6 @@ def ws_dispenser_test(disp):
 def ws_dispenser_clean():
     if app.options.must_login_to_dispense and not current_user.is_authenticated():
         return "login required"
-
-    app.mixer.clean()
+    # Commented out until we make indios stand first!    
+    #app.mixer.clean()
     return "ok\n"

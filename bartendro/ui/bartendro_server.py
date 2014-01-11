@@ -62,11 +62,11 @@ try:
     app.indios[0] = indio.Indio(pol,0,0)
     app.indios[1] = indio.Indio(pol,0,1)
     app.indios[2] = indio.Indio(pol,0,2)
-    app.indios[3] = indio.Indio(pol,0,3)
+    app.indios[3] = indio.Indio(pol,0,3) 
     app.indios[4] = indio.Indio(pol,1,0)
     app.indios[5] = indio.Indio(pol,1,1)
     app.indios[6] = indio.Indio(pol,1,2)
-    app.indios[7] = indio.Indio(pol,1,3)
+    app.indios[7] = indio.Indio(pol,1,3,20) # This guy aims a little too high
     for indio in app.indios:
         indio.sit()
         indio.center()
