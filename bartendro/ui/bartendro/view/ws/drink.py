@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from time import sleep
+import math
 from bartendro import app, db
 from flask import Flask, request, jsonify
 from flask.ext.login import login_required, current_user
@@ -14,21 +15,171 @@ from bartendro import constant
 
 import json
 
+# @app.route('/ws/drink/<int:drink>')
+# def ws_drink(drink):
+#     mixer = app.mixer
+# 
+#     if app.options.must_login_to_dispense and not current_user.is_authenticated():
+#         return "login required"
+# 
+#     recipe = {}
+#     for arg in request.args:
+#         recipe[arg] = int(request.args.get(arg))
+# 
+#     if mixer.make_drink(drink, recipe):
+#         return "ok\n"
+#     else:
+#         raise ServiceUnavailable("Error: %s (%d)" % (mixer.get_error(), ret))
+
 @app.route('/ws/drink/<int:drink>')
 def ws_drink(drink):
     mixer = app.mixer
-
+    print "El request viene con la cantidad de args: " , len(request.args)
     if app.options.must_login_to_dispense and not current_user.is_authenticated():
         return "login required"
 
     recipe = {}
-    for arg in request.args:
+    
+    if len(request.args) == 0:
+    	print "NO HAY ARGS"
+    	recipe = getRecipeFromDrink(drink,150)
+    	print "NO ARGS, LA RECETA: ", recipe
+    	
+    else:
+      for arg in request.args:
         recipe[arg] = int(request.args.get(arg))
+        print recipe
+      
+      
 
     if mixer.make_drink(drink, recipe):
         return "ok\n"
     else:
         raise ServiceUnavailable("Error: %s (%d)" % (mixer.get_error(), ret))
+
+
+def getRecipeFromDrink(id, drink_size):
+	
+    drink = db.session.query(Drink) \
+                          .filter(Drink.id == id) \
+                          .first() 
+
+    boozes = db.session.query(Booze) \
+                          .join(DrinkBooze.booze) \
+                          .filter(DrinkBooze.drink_id == drink.id)
+    
+    drink.process_ingredients()
+    print "Los ingredients: ",drink.ingredients
+    content = []
+    for ing in drink.ingredients:
+    	print ing
+    	info = {
+    		"name":  ing['name'],
+    		"id":    ing['id'],
+    		"parts": ing['parts'],
+    		"volume"  : 0
+    	}
+    	content.append(info)
+    
+    print "El content es: ", content
+    total = 0
+    for ing in content:
+    	total = total + ing['parts']
+    
+    print "El total de partes es: ", total
+    
+    recipe = {}
+    for ing in content:
+    	ing['volume'] = round( (float(drink_size) * float(ing['parts']) ) / float(total))
+#     	print "El volumen: ", ing['volume']
+    	tag = "booze" + str(ing['id'])
+#     	print tag
+    	recipe[tag] = ing['volume']
+#     	print recipe
+    print "La receta calculada es:", recipe
+    return recipe
+
+
+
+#     for ing in content:
+# #     	ing['volume'] = round( (float(drink_size) * float(ing['parts']) ) / float(total))
+# #     	print "El volumen es: ", ing['volume']
+#     	tag = "booze" + str(ing['id'])
+#     	print tag
+#     	recipe[tag] = ing['volume']
+# 	
+# 	print recipe
+# 	return recipe
+		
+
+
+
+# for(i = 0; i < ing.length; i++)
+#         {
+#             if (i == 0)
+#                 args = "?";
+#             else 
+#                 args += "&";
+#             args += "booze" + ing[i].id + "=";
+#             volume = is_taster ? ing[i].taster_volume.toFixed(0) : ing[i].volume.toFixed(0);
+#             args += volume;
+#         }
+	
+#  var drink_size = {{ options.drink_size }};    
+#     var ing = [ 
+#    {% for ing in drink.ingredients %}
+#       { 
+#         'name'           : '{{ ing.name }}', 
+#         'id'             : {{ ing.id }}, 
+#         'parts'          : {{ ing.parts}}, 
+#         'newparts'       : 0,
+#         'volume'         : 0,
+#         'taster_volume'  : 0,
+#         'type'           : {{ ing.type }}
+#       },
+#    {% endfor %}
+# ];
+
+#     for(i = 0; i < ing.length; i++)
+#     {
+#         ing[i].newparts = ing[i].parts;
+#         total += ing[i].newparts;
+#     }
+
+#     for(i = 0; i < ing.length; i++)
+#     {
+#         ing[i].volume = drink_size * ing[i].newparts / total;
+#         
+#     } 
+
+
+
+# def update_volumes():
+# 
+#     total = 0;
+#     for(i = 0; i < ing.length; i++)
+#     {
+#         if (ing[i].type == 1) // Alcohol
+#             ing[i].newparts = ing[i].parts + (ing[i].parts * .25 * drink_strength);
+#         else
+#         if (ing[i].type == 2) // tart
+#             ing[i].newparts = ing[i].parts + (ing[i].parts * .25 * drink_tartness);
+#         else
+#         if (ing[i].type == 3) // sweet
+#             ing[i].newparts = ing[i].parts + (ing[i].parts * .25 * -drink_tartness);
+#         else
+#             ing[i].newparts = ing[i].parts;
+# 
+#         total += ing[i].newparts;
+#     } 
+#     for(i = 0; i < ing.length; i++)
+#     {
+#         ing[i].volume = drink_size * ing[i].newparts / total;
+#         ing[i].taster_volume = taster_size * ing[i].newparts / total;
+#         
+#     } 
+
+
 
 @app.route('/ws/drink/<int:drink>/available/<int:state>')
 def ws_drink_available(drink, state):
@@ -72,6 +223,7 @@ def filter_drink_list(can_make_dict, drinks):
         except KeyError:
             pass
     return filtered
+ 
  
 @app.route('/ws/drink/dindex')
 def ws_index():
@@ -141,9 +293,6 @@ def drink_info(id):
                           .join(DrinkBooze.booze) \
                           .filter(DrinkBooze.drink_id == drink.id)
 
-#     custom_drink = db.session.query(CustomDrink) \
-#                           .filter(drink.id == CustomDrink.drink_id) \
-#                           .first()
     drink.process_ingredients()
 
     has_non_alcohol = False
@@ -179,102 +328,7 @@ def drink_info(id):
     				can_change_strength=show_strength
     			)
 
-                     
-# var ing = [ 
-#    {% for ing in drink.ingredients %}
-#       { 
-#         'name'           : '{{ ing.name }}', 
-#         'id'             : {{ ing.id }}, 
-#         'parts'          : {{ ing.parts}}, 
-#         'newparts'       : 0,
-#         'volume'         : 0,
-#         'taster_volume'  : 0,
-#         'type'           : {{ ing.type }}
-#       },
-#    {% endfor %}
-# ];
-
-
-#     print drink.ingredients
-# 	
-#     for ing in drink.ingredients:        
-#     	print { 
-#         'name'           : ing['name'], 
-#         'id'             : ing['id'], 
-#         'parts'          : ing['parts'], 
-#         'newparts'       : 0,
-#         'volume'         : 0,
-#         'taster_volume'  : 0,
-#         'type'           : ing['type']
-#         }
-
-# for(i = 0; i < ing.length; i++)
-#         {
-#             if (i == 0)
-#                 args = "?";
-#             else 
-#                 args += "&";
-#             args += "booze" + ing[i].id + "=";
-#             volume = is_taster ? ing[i].taster_volume.toFixed(0) : ing[i].volume.toFixed(0);
-#             args += volume;
-#         }
-# $.ajax({
-#                 url: "/ws/drink/" + drink + args,
-#                 success: function(html)
-#                 {
-#                     if (is_taster)
-#                         $.modal.close();
-#                     else
-#                         window.location = "/";
-#                 }
-#         });
-
-
-
-
-#      if not custom_drink:
-#         return render_template("drink/index", 
-#                                drink=drink, 
-#                                options=app.options,
-#                                title=drink.name.name,
-#                                is_custom=0,
-#                                show_sweet_tart=show_sweet_tart,
-#                                show_sobriety=show_sobriety,
-#                                can_change_strength=show_strength)
-# 
-#     dispensers = db.session.query(Dispenser).all()
-#     disp_boozes = {}
-#     for dispenser in dispensers:
-#         disp_boozes[dispenser.booze_id] = 1
-# 
-#     booze_group = db.session.query(BoozeGroup) \
-#                           .join(DrinkBooze, DrinkBooze.booze_id == BoozeGroup.abstract_booze_id) \
-#                           .join(BoozeGroupBooze) \
-#                           .filter(Drink.id == id) \
-#                           .first()
-# 
-#     filtered = []
-#     for bgb in booze_group.booze_group_boozes:
-#         try:
-#             dummy = disp_boozes[bgb.booze_id]
-#             filtered.append(bgb)
-#         except KeyError:
-#             pass
-# 
-#     booze_group.booze_group_boozes = sorted(filtered, key=lambda booze: booze.sequence ) 
-#     return render_template("drink/index", 
-#                            drink=drink, 
-#                            options=app.options,
-#                            title=drink.name.name,
-#                            is_custom=1,
-#                            custom_drink=drink.custom_drink[0],
-#                            booze_group=booze_group,
-#                            show_sweet_tart=show_sweet_tart,
-#                            show_sobriety=show_sobriety,
-#                            can_change_strength=show_strength)
-    
-    
-    
+               
     
     
     
