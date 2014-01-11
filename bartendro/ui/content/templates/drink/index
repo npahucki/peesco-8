@@ -1,14 +1,14 @@
 {% extends 'layout' %}
 {% block body %}
 <div class="drink-content">
-  <div class="drink-heading">Make: {{ drink.name.name }}</div>
+  <div class="drink-heading">Preparar: {{ drink.name.name }}</div>
   <div class="row-fluid">
       <div class="span5">
           <div class="dispense-drink-detail">
              <div class="pour-desc">
                 {{ drink.desc }}
              </div>
-             <h3>ingredients:</h3>
+             <h3>ingredientes:</h3>
              <div class="pour-ing">
                 <table class="ing-table">
                   {% for ing in drink.ingredients %}
@@ -29,7 +29,7 @@
                   <table>
                   <tr>
                      <td></td>
-                     <td><div class="stack-element-title">size</div></td>
+                     <td><div class="stack-element-title">tamaño</div></td>
                      <td></td>
                   </tr>
                   <tr>
@@ -38,9 +38,9 @@
                      <td class="margin-td"><a class="btn btn-large btn-warning drink-plus-minus button-border" onclick="size_bigger()">+</a> </td>
                   </tr>
                   <tr>
-                     <td class="margin-td-label">smaller</td>
+                     <td class="margin-td-label">mas pequeño</td>
                      <td></td>
-                     <td class="margin-td-label">bigger</td>
+                     <td class="margin-td-label">mas grande</td>
                   </tr>
                   </table>
                 </div>
@@ -51,7 +51,7 @@
                   <table>
                   <tr>
                      <td></td>
-                     <td><div class="stack-element-title">strength</div></td>
+                     <td><div class="stack-element-title">potencia</div></td>
                      <td></td>
                   </tr>
                   <tr>
@@ -60,9 +60,9 @@
                      <td class="margin-td"><a class="btn btn-large btn-warning drink-plus-minus button-border" onclick="strength_stronger()">+</a> </td>
                   </tr>
                   <tr>
-                     <td class="margin-td-label">weaker</td>
+                     <td class="margin-td-label">menos potente</td>
                      <td></td>
-                     <td class="margin-td-label">stronger</td>
+                     <td class="margin-td-label">mas potente</td>
                   </tr>
                   </table>
                 </div>
@@ -73,7 +73,7 @@
                   <table>
                   <tr>
                      <td></td>
-                     <td><div class="stack-element-title">sweet/tart</div></td>
+                     <td><div class="stack-element-title">dulce/acído</div></td>
                      <td></td>
                   </tr>
                   <tr>
@@ -82,9 +82,9 @@
                      <td class="margin-td"><a class="btn btn-large btn-warning drink-plus-minus button-border" onclick="tartness_tarter()">+</a> </td>
                   </tr>
                   <tr>
-                     <td class="margin-td-label">sweeter</td>
+                     <td class="margin-td-label">mas dulce</td>
                      <td></td>
-                     <td class="margin-td-label">tarter</td>
+                     <td class="margin-td-label">mas aícdo</td>
                   </tr>
                   </table>
                 </div>
@@ -92,11 +92,11 @@
 
               <table class="dispense-buttons">
               <tr>
-                <td class="dispense-buttons-left"><a class="btn btn-large btn-warning dispense-button button-border" onclick="back()">Back</a></td>
+                <td class="dispense-buttons-left"><a class="btn btn-large btn-warning dispense-button button-border" onclick="back()">Atras</a></td>
                 {% if options.show_taster %}
-                    <td class="dispense-buttons-middle"><a class="btn btn-large btn-warning dispense-button button-border" onclick="make_drink({{ drink.id}}, 1)">Taster</a></td>
+                    <td class="dispense-buttons-middle"><a class="btn btn-large btn-warning dispense-button button-border" onclick="make_drink({{ drink.id}}, 1)">Prueba</a></td>
                 {% endif %}
-                <td class="dispense-buttons-right"><a class="btn btn-large btn-warning dispense-button button-border" onclick="make_drink({{ drink.id}}, 0)">Pour</a></td>
+                <td class="dispense-buttons-right"><a class="btn btn-large btn-warning dispense-button button-border" onclick="make_drink({{ drink.id}}, 0)">Servir</a></td>
               </tr>
               </table>
           </div>
@@ -235,11 +235,11 @@ function set_strength_text()
     t = "";
     switch(drink_strength)
     {
-        case -2: t = "really weak!"; break;
-        case -1: t = "weaker"; break;
+        case -2: t = "muy debil!"; break;
+        case -1: t = "debil"; break;
         case 0: t = "normal"; break;
-        case 1: t = "stronger"; break;
-        case 2: t = "really strong!"; break;
+        case 1: t = "fuerte"; break;
+        case 2: t = "muy fuerte!"; break;
     }
     $("#strength-text").text(t);
 }
@@ -266,11 +266,11 @@ function set_tartness_text()
     t = "";
     switch(drink_tartness)
     {
-        case -2: t = "really sweet!"; break;
-        case -1: t = "sweeter"; break;
+        case -2: t = "muy dulce!"; break;
+        case -1: t = "mas dulce"; break;
         case 0: t = "normal"; break;
-        case 1: t = "tarter"; break;
-        case 2: t = "really tart!"; break;
+        case 1: t = "mas acído"; break;
+        case 2: t = "muy acído!"; break;
     }
     $("#tartness-text").text(t);
 }

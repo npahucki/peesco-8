@@ -2,11 +2,11 @@
 use_liquid_out_sensors = False
 must_login_to_dispense = False
 login_name             = "bartendro"
-login_passwd           = "boozemeup"
+login_passwd           = "booz3m3up"
 
 # Drink screen options
-metric         = 0 
-drink_size     = 150   # in ml
+metric         = 1
+drink_size     = 80   # in ml
 show_strength  = True
 show_size      = True
 show_taster    = False

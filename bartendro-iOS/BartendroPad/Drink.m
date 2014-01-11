@@ -22,5 +22,6 @@
 
 @synthesize info;
 
+@synthesize ingredients;
 
 @end

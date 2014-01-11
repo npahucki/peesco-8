@@ -19,6 +19,7 @@
      @property (nonatomic, retain) NSNumber * sugg_size;
      @property (nonatomic, retain) NSNumber * popular;
      @property (nonatomic, retain) NSNumber * available;
+     @property (nonatomic, retain) NSMutableArray * ingredients;
      */
     
     
@@ -33,6 +34,8 @@
     self.sugg_size = @([[attributes valueForKeyPath:@"sugg_size"] intValue]);
     self.popular   = @([[attributes valueForKeyPath:@"popular"]   intValue]);
     self.available = @([[attributes valueForKeyPath:@"available"] intValue]);
+    
+    self.ingredients = [attributes valueForKeyPath:@"ingredients"];
     
 }
 

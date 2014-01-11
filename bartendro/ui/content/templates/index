@@ -4,15 +4,15 @@
     {% if top_drinks or other_drinks %}
         <div class="row-fluid">
            <div class="span6">
-                <h1>the essentials</h1>
+                <h1>Para Empezar</h1>
            </div>
-           <div class="span6 trending-drinks">
-                <a href="/trending">What's popular now?</a>
-           </div>
+           <!--div class="span6 trending-drinks">
+                <a href="/trending">Bebidas populares</a>
+           </div-->
         </div>
         {{ drink_table(top_drinks) }}
         <div style="clear: both"/>
-        <h1>the wild side</h1>
+        <h1>Salvaje</h1>
         {{ drink_table(other_drinks) }}
     {% else %}
         <div class="out-of-booze">

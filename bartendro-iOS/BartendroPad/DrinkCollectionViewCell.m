@@ -46,7 +46,37 @@
     
     NSLog(@"Pouring a drink called: %@", self.drink.name);
     NSLog(@"With the ID: %@", self.drink.drink_id);
-    [self getDrinkDescription:self.drink.drink_id.intValue];
+    NSLog(@"With ingredients: %@", self.drink.ingredients);
+
+    //[self getDrinkDescription:self.drink.drink_id.intValue];
+    
+    
+    NSArray * ing = self.drink.ingredients;
+    
+    NSString * args = [[NSString alloc] init];
+    
+    for (int i=0; i < ing.count; i++) {
+        
+        NSLog(@"ingrediente %d", i );
+        
+        if (i == 0) {
+            args = @"?";
+        }else{
+            args = [NSString stringWithFormat:@"%@%@",args, @"&"];
+        }
+        
+        NSDictionary * anIng = [ing objectAtIndex:i];
+        
+        NSString * boz = [NSString stringWithFormat:@"booze%@=19",[anIng objectForKey:@"id"]];
+        args = [NSString stringWithFormat:@"%@%@",args, boz];
+        NSLog(@"args: %@", args);
+        NSLog(@"/ws/drink/%@%@", [self.drink.drink_id stringValue],args);
+        
+    }
+
+    
+
+    
     
     
 //#     print drink.ingredients

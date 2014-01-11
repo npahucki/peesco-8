@@ -23,4 +23,7 @@
 @property (nonatomic, retain) NSNumber * available;
 @property (nonatomic, retain) NSDictionary * info;
 
+@property (nonatomic, retain) NSMutableArray * ingredients;
+
+
 @end

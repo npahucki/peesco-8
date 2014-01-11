@@ -228,13 +228,13 @@ class Mixer(object):
 
         # A little display before dispensing -blocks until done
         self.pre_dispense_dance(recipe)
-
+        
         # Make the indios that will dispense, standup 
         for r in recipe:
              indio = app.indios[r['dispenser'] - 1]
              indio.center()
              indio.stand()
-        sleep(2)                        # Make sure all indios are standing and create a little suspense 
+        sleep(1)                        # Make sure all indios are standing and create a little suspense 
 
          # Now start the actual liquid flowing...
         for r in recipe:
@@ -255,28 +255,31 @@ class Mixer(object):
             sleep(.5)
             # TODO: Make others dance in the meantime?
             for disp in active_disp:
-                indio = app.indios[disp -1]
-                is_disp, is_cs = self.driver.is_dispensing(disp - 1)
-                if is_cs:
-                    app.log.error("Current sense detected on pump %d!" % disp)
-                    active_disp.remove(disp)
-                    break
-                if is_disp:
-                    # Swing side to side
-                    if swag_dir:
-                        indio.center(20,15)
+                try: 
+                    indio = app.indios[disp -1]
+                    is_disp, is_cs = self.driver.is_dispensing(disp - 1)
+                    if is_cs:
+                        app.log.error("Current sense detected on pump %d!" % disp)
+                        active_disp.remove(disp)
+                        break
+                    if is_disp:
+                        # Swing side to side
+                        if swag_dir:
+                            indio.center(20,15)
+                        else:
+                            indio.center(-20,15)
                     else:
-                        indio.center(-20,15)
-                else:
-                    print "Pump %d is now done dispensing" % disp 
-                    # Shake off the liquid then sit
-                    def indio_done(indio):
-                        sleep(1)
-                        indio.center()
-                        indio.dick_shake(5, True)
-                        indio.sit();
-                    thread.start_new_thread(indio_done,(indio,))
-                    active_disp.remove(disp)
+                        print "Pump %d is now done dispensing" % disp 
+                        # Shake off the liquid then sit
+                        def indio_done(indio):
+                            sleep(1)
+                            indio.center()
+                            indio.dick_shake(5, True)
+                            indio.sit();
+                        thread.start_new_thread(indio_done,(indio,))
+                        active_disp.remove(disp)
+                except Exception:
+                    print "Failed to read status of pump %d" % disp
                     
         # Make sure all the indios are sitting and centered
         sleep(2)
@@ -303,27 +306,26 @@ class Mixer(object):
         CleanCycle(self).start()
 
     def pre_dispense_dance(self,recipe):
-        speed = 65
+        speed = 0
         offset = 90
+        accel = 60
         for idx, indio in enumerate(app.indios):
-            if(idx < len(app.indios) - 1):
-                indio.center(-offset, speed)
-            else: 
-                indio.center(offset, speed)
-            sleep(.5)
-        for idx, indio in enumerate(reversed(app.indios)):
-            if(idx < len(app.indios) - 1):
-                indio.center(offset, speed)
-            else:
-                indio.center(0, speed)
-                sleep(1)
-                indio.sit(50)
-                sleep(.5)
-                indio.sit();
-            sleep(.5)
-        for indio in app.indios:
             indio.center()
-            indio.sit()
+            indio.stand(0,speed, accel)
+            sleep(.2)
+        sleep(2)
+
+        # Get a list of participating
+        participatingIdx = []
+        for r in recipe:
+            participatingIdx.append(r['dispenser'] - 1)
+        
+        # Sit all the ones that won't participate 
+        for idx, indio in reversed(list(enumerate(app.indios))):
+             if not idx in participatingIdx:
+                indio.center()
+                indio.sit(0, speed, accel)
+                sleep(.1)
         
 # TODO: Must raise indios during clean!
 class CleanCycle(Thread):
