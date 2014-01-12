@@ -41,19 +41,16 @@
   
   self.drinkDescription.text = aDrink.desc;
   self.drinkDescription.textColor = [UIColor lightGrayColor];
-<<<<<<< HEAD
   self.drinkDescription.font = [UIFont fontWithName:@"DIN Alternate" size:20];
-
-  // Drop shadow: NOTE: does not seem to work at all!
-=======
   self.drinkDescription.font = [UIFont fontWithName:@"DIN Alternate Condensed" size:18];
   [self.layer setCornerRadius:10.0f];
   
->>>>>>> 3b753643f470e85a0614fc1663549b0b149d3b42
+  // Drop shadow: NOTE: does not seem to work at all!
   [self.layer setShadowColor:[UIColor blackColor].CGColor];
   [self.layer setShadowOpacity:0.8];
   [self.layer setShadowRadius:3.0];
   [self.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+
   self.drinkImageView.image = [self getDrinkImageName:aDrink];
   self.drinkName.text = aDrink.name;
   [self setDrink:aDrink];
