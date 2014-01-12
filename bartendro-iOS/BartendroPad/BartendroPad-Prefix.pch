@@ -22,5 +22,5 @@
 #if TARGET_IPHONE_SIMULATOR
   #define BARTENDRO_URL @"localhost:8080"
 #else
-  #define BARTENDRO_URL @"bartendro"
+  #define BARTENDRO_URL @"192.168.0.104:8080"
 #endif

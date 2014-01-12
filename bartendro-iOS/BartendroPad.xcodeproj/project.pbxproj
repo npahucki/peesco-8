@@ -28,7 +28,6 @@
 		D6AD5352184E9718006D09F5 /* BartendroPadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6AD5351184E9718006D09F5 /* BartendroPadTests.m */; };
 		D6E5432E185945AA003D5FD5 /* Drink+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E5432D185945AA003D5FD5 /* Drink+Helper.m */; };
 		D6E5433118594E17003D5FD5 /* DrinkCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E5433018594E17003D5FD5 /* DrinkCollectionViewCell.m */; };
-		E8EABE4818822ABF00A70DC4 /* 103973111.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE4718822ABF00A70DC4 /* 103973111.jpg */; };
 		E8EABE4A188230BF00A70DC4 /* Pissco-1-Element.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE49188230BF00A70DC4 /* Pissco-1-Element.jpg */; };
 		E8EABE4C188231B800A70DC4 /* Pissco-1-Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE4B188231B800A70DC4 /* Pissco-1-Logo.jpg */; };
 		E8EABE4E1882E17F00A70DC4 /* ServingNow.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE4D1882E17F00A70DC4 /* ServingNow.png */; };
@@ -78,7 +77,6 @@
 		D6E5432D185945AA003D5FD5 /* Drink+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Drink+Helper.m"; sourceTree = "<group>"; };
 		D6E5432F18594E17003D5FD5 /* DrinkCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrinkCollectionViewCell.h; sourceTree = "<group>"; };
 		D6E5433018594E17003D5FD5 /* DrinkCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrinkCollectionViewCell.m; sourceTree = "<group>"; };
-		E8EABE4718822ABF00A70DC4 /* 103973111.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 103973111.jpg; sourceTree = "<group>"; };
 		E8EABE49188230BF00A70DC4 /* Pissco-1-Element.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Pissco-1-Element.jpg"; sourceTree = "<group>"; };
 		E8EABE4B188231B800A70DC4 /* Pissco-1-Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Pissco-1-Logo.jpg"; sourceTree = "<group>"; };
 		E8EABE4D1882E17F00A70DC4 /* ServingNow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ServingNow.png; sourceTree = "<group>"; };
@@ -167,7 +165,6 @@
 				D65E4D0A185E5F5F00280DD2 /* HeaderCollectionReusableView.m */,
 				D6E5432F18594E17003D5FD5 /* DrinkCollectionViewCell.h */,
 				D6E5433018594E17003D5FD5 /* DrinkCollectionViewCell.m */,
-				E8EABE4718822ABF00A70DC4 /* 103973111.jpg */,
 				E8EABE4D1882E17F00A70DC4 /* ServingNow.png */,
 				E8EABE4B188231B800A70DC4 /* Pissco-1-Logo.jpg */,
 				E8EABE49188230BF00A70DC4 /* Pissco-1-Element.jpg */,
@@ -291,7 +288,6 @@
 				D6AD533A184E9717006D09F5 /* Main_iPad.storyboard in Resources */,
 				E8EABE4A188230BF00A70DC4 /* Pissco-1-Element.jpg in Resources */,
 				D6AD533F184E9717006D09F5 /* Images.xcassets in Resources */,
-				E8EABE4818822ABF00A70DC4 /* 103973111.jpg in Resources */,
 				D6AD5337184E9717006D09F5 /* Main_iPhone.storyboard in Resources */,
 				D6AD532E184E9717006D09F5 /* InfoPlist.strings in Resources */,
 			);
@@ -488,12 +484,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3F93F41D1EB04FD6A012E072 /* Pods.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BartendroPad/BartendroPad-Prefix.pch";
 				INFOPLIST_FILE = "BartendroPad/BartendroPad-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -502,12 +497,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3F93F41D1EB04FD6A012E072 /* Pods.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BartendroPad/BartendroPad-Prefix.pch";
 				INFOPLIST_FILE = "BartendroPad/BartendroPad-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

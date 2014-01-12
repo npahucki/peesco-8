@@ -37,7 +37,7 @@
   
   self.drinkDescription.text = aDrink.desc;
   self.drinkDescription.textColor = [UIColor lightGrayColor];
-  self.drinkDescription.font = [UIFont fontWithName:@"DIN Alternate" size:20];
+  self.drinkDescription.font = [UIFont fontWithName:@"DIN Alternate Condensed" size:18];
   [self.layer setCornerRadius:10.0f];
   
   [self.layer setShadowColor:[UIColor blackColor].CGColor];
