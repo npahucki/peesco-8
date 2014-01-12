@@ -17,7 +17,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+
     }
     return self;
 }
@@ -32,9 +32,40 @@
 */
 
 -(void)populateUIwithDatafrom:(Drink *)aDrink{
-    self.drinkDescription.text = aDrink.desc;
-    self.drinkName.text = aDrink.name;
-    
+  
+  /*
+   
+   // border radius
+   [v.layer setCornerRadius:30.0f];
+   
+   // border
+   [v.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+   [v.layer setBorderWidth:1.5f];
+   
+   // drop shadow
+   [v.layer setShadowColor:[UIColor blackColor].CGColor];
+   [v.layer setShadowOpacity:0.8];
+   [v.layer setShadowRadius:3.0];
+   [v.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+   */
+  
+  
+  
+  self.drinkDescription.text = aDrink.desc;
+  self.drinkDescription.textColor = [UIColor lightGrayColor];
+  self.drinkDescription.font = [UIFont fontWithName:@"DIN Alternate" size:20];
+  [self.layer setCornerRadius:10.0f];
+  
+  [self.layer setShadowColor:[UIColor blackColor].CGColor];
+  [self.layer setShadowOpacity:0.8];
+  [self.layer setShadowRadius:3.0];
+  [self.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+  
+  [self.pourButton.layer setCornerRadius:10.0f];
+  
+  
+  self.drinkName.text = aDrink.name;
+  
     [self setDrink:aDrink];
 
 }
@@ -42,7 +73,7 @@
 
 - (IBAction)pourDrink:(id)sender {
 
-    NSString * get = [NSString stringWithFormat:@"http://192.168.2.16/ws/drink/%@",self.drink.drink_id];
+    NSString * get = [NSString stringWithFormat:@"http://%@/ws/drink/%@",BARTENDRO_URL,  self.drink.drink_id];
     
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
 
@@ -218,7 +249,41 @@
      ];
 }
 
-
+-(UIColor*)colorWithHexString:(NSString*)hex
+{
+  NSString *cString = [[hex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+  
+  // String should be 6 or 8 characters
+  if ([cString length] < 6) return [UIColor grayColor];
+  
+  // strip 0X if it appears
+  if ([cString hasPrefix:@"0X"]) cString = [cString substringFromIndex:2];
+  
+  if ([cString length] != 6) return  [UIColor grayColor];
+  
+  // Separate into r, g, b substrings
+  NSRange range;
+  range.location = 0;
+  range.length = 2;
+  NSString *rString = [cString substringWithRange:range];
+  
+  range.location = 2;
+  NSString *gString = [cString substringWithRange:range];
+  
+  range.location = 4;
+  NSString *bString = [cString substringWithRange:range];
+  
+  // Scan values
+  unsigned int r, g, b;
+  [[NSScanner scannerWithString:rString] scanHexInt:&r];
+  [[NSScanner scannerWithString:gString] scanHexInt:&g];
+  [[NSScanner scannerWithString:bString] scanHexInt:&b];
+  
+  return [UIColor colorWithRed:((float) r / 255.0f)
+                         green:((float) g / 255.0f)
+                          blue:((float) b / 255.0f)
+                         alpha:1.0f];
+}
 
 
 

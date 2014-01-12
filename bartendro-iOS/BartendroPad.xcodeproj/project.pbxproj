@@ -29,6 +29,8 @@
 		D6E5432E185945AA003D5FD5 /* Drink+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E5432D185945AA003D5FD5 /* Drink+Helper.m */; };
 		D6E5433118594E17003D5FD5 /* DrinkCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E5433018594E17003D5FD5 /* DrinkCollectionViewCell.m */; };
 		E8EABE4818822ABF00A70DC4 /* 103973111.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE4718822ABF00A70DC4 /* 103973111.jpg */; };
+		E8EABE4A188230BF00A70DC4 /* Pissco-1-Element.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE49188230BF00A70DC4 /* Pissco-1-Element.jpg */; };
+		E8EABE4C188231B800A70DC4 /* Pissco-1-Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE4B188231B800A70DC4 /* Pissco-1-Logo.jpg */; };
 		F06750A60C844A5C8195698B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05332AF241CA4D1499505A5D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +78,8 @@
 		D6E5432F18594E17003D5FD5 /* DrinkCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrinkCollectionViewCell.h; sourceTree = "<group>"; };
 		D6E5433018594E17003D5FD5 /* DrinkCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrinkCollectionViewCell.m; sourceTree = "<group>"; };
 		E8EABE4718822ABF00A70DC4 /* 103973111.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 103973111.jpg; sourceTree = "<group>"; };
+		E8EABE49188230BF00A70DC4 /* Pissco-1-Element.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Pissco-1-Element.jpg"; sourceTree = "<group>"; };
+		E8EABE4B188231B800A70DC4 /* Pissco-1-Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Pissco-1-Logo.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +155,6 @@
 		D6AD5329184E9717006D09F5 /* BartendroPad */ = {
 			isa = PBXGroup;
 			children = (
-				D6AD5335184E9717006D09F5 /* Main_iPhone.storyboard */,
 				D6A1B00E184EAAD10095CD6C /* CoreData */,
 				D6AD5332184E9717006D09F5 /* AppDelegate.h */,
 				D6AD5333184E9717006D09F5 /* AppDelegate.m */,
@@ -163,6 +166,8 @@
 				D6E5432F18594E17003D5FD5 /* DrinkCollectionViewCell.h */,
 				D6E5433018594E17003D5FD5 /* DrinkCollectionViewCell.m */,
 				E8EABE4718822ABF00A70DC4 /* 103973111.jpg */,
+				E8EABE4B188231B800A70DC4 /* Pissco-1-Logo.jpg */,
+				E8EABE49188230BF00A70DC4 /* Pissco-1-Element.jpg */,
 				D6AD533E184E9717006D09F5 /* Images.xcassets */,
 				D6AD532A184E9717006D09F5 /* Supporting Files */,
 			);
@@ -172,6 +177,7 @@
 		D6AD532A184E9717006D09F5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D6AD5335184E9717006D09F5 /* Main_iPhone.storyboard */,
 				D6AD532B184E9717006D09F5 /* BartendroPad-Info.plist */,
 				D6AD532C184E9717006D09F5 /* InfoPlist.strings */,
 				D6AD532F184E9717006D09F5 /* main.m */,
@@ -277,7 +283,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8EABE4C188231B800A70DC4 /* Pissco-1-Logo.jpg in Resources */,
 				D6AD533A184E9717006D09F5 /* Main_iPad.storyboard in Resources */,
+				E8EABE4A188230BF00A70DC4 /* Pissco-1-Element.jpg in Resources */,
 				D6AD533F184E9717006D09F5 /* Images.xcassets in Resources */,
 				E8EABE4818822ABF00A70DC4 /* 103973111.jpg in Resources */,
 				D6AD5337184E9717006D09F5 /* Main_iPhone.storyboard in Resources */,

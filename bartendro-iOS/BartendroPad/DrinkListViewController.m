@@ -32,10 +32,12 @@
 
 
 -(void) getDrinkList{
-    
+  
+    NSString * getAddress = [NSString stringWithFormat:@"http://%@/ws/drink/dindex", BARTENDRO_URL];
+  
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
     
-    [manager GET:@"http://192.168.2.16/ws/drink/dindex"
+    [manager GET:getAddress
       parameters:nil
      
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -43,14 +45,15 @@
              
              NSArray * td = [[[responseObject objectForKey:@"AllDrinks"] objectAtIndex:0] objectForKey:@"topDrinks"];
              NSArray * od = [[[responseObject objectForKey:@"AllDrinks"] objectAtIndex:1] objectForKey:@"otherDrinks"];
-             
+           NSMutableArray * newarray = [[NSMutableArray alloc] initWithArray:td];
+           [newarray addObjectsFromArray:od];
+           
              //             NSLog(@"top drinks  : %@", td);
              //             NSLog(@"Other drinks  : %@", td);
-             
-             
-             [self fillTopDrinkListFromJSON:td];
-             [self fillOtherDrinkListFromJSON:od];
-             
+           
+             [self fillTopDrinkListFromJSON:newarray];
+//             [self fillOtherDrinkListFromJSON:od];
+           
              
          }
      
@@ -112,40 +115,40 @@
 #pragma mark - UICollectionView Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-//    NSString *searchTerm = self.searches[section];
-//    return [self.searchResults[searchTerm] count];
 
     
-    NSLog(@"Section: %d", section);
-    NSLog(@"topDrinkList: %d", [self.topDrinkList count]);
-    NSLog(@"otherDrinkList: %d", [self.otherDrinkList count]);
+//    NSLog(@"Section: %d", section);
+//    NSLog(@"topDrinkList: %d", [self.topDrinkList count]);
+////    NSLog(@"otherDrinkList: %d", [self.otherDrinkList count]);
+//  
+//    NSInteger retvalue = 0;
+//    
+//    switch (section) {
+//        case 0:
+//            
+//           retvalue = [self.topDrinkList count];
+//            
+//            break;
+//        case 1:
+//            retvalue = [self.otherDrinkList count];
+//            break;
+//            
+//        default:
+//            retvalue = 0;
+//            break;
+//    }
+//    
+//    NSLog(@"Drinks %d para la section %d", retvalue, section);
+  
     
-    NSInteger retvalue = 0;
-    
-    switch (section) {
-        case 0:
-            
-           retvalue = [self.topDrinkList count];
-            
-            break;
-        case 1:
-            retvalue = [self.otherDrinkList count];
-            break;
-            
-        default:
-            retvalue = 0;
-            break;
-    }
-    
-    NSLog(@"Drinks %d para la section %d", retvalue, section);
-    
-    
-    return retvalue;
+//    return retvalue;
+  
+  return [self.topDrinkList count];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
 //    return [self.searches count];
-    return 2;
+    return 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv
@@ -159,19 +162,19 @@
     NSLog(@"La row: %d", indexPath.row);
     NSLog(@"La seccion: %d", indexPath.section);
     
-    switch (indexPath.section) {
-        case 0:
-            d = [self.topDrinkList objectAtIndex:indexPath.row];
-            break;
-            
-        case 1:
-            d = [self.otherDrinkList objectAtIndex:indexPath.row];
-            break;
-            
-        default:
-            break;
-    }
-    
+//    switch (indexPath.section) {
+//        case 0:
+//            d = [self.topDrinkList objectAtIndex:indexPath.row];
+//            break;
+//            
+//        case 1:
+//            d = [self.otherDrinkList objectAtIndex:indexPath.row];
+//            break;
+//            
+//        default:
+//            break;
+//    }
+    d = [self.topDrinkList objectAtIndex:indexPath.row];
     [cell populateUIwithDatafrom:d];
     
     return cell;
@@ -192,21 +195,30 @@
     
     if (kind == UICollectionElementKindSectionHeader) {
         
-        HeaderCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+        HeaderCollectionReusableView *headerView =
+      [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                         withReuseIdentifier:@"HeaderView"
+                                                forIndexPath:indexPath];
         
-        NSString *title;
-        
-        
-        if (indexPath.section == 0) {
-                title = [[NSString alloc] initWithFormat:@"Lo tipico"];
-        }
-        
-        if (indexPath.section == 1) {
-            title = [[NSString alloc] initWithFormat:@"Lo Esencial"];
-        }
-        
-        headerView.tituloHeader.text = title;
-        
+//        NSString *title;
+//        
+//        
+//        if (indexPath.section == 0) {
+//                title = [[NSString alloc] initWithFormat:@"Lo tipico"];
+//        }
+//        
+//        if (indexPath.section == 1) {
+//            title = [[NSString alloc] initWithFormat:@"Lo Esencial"];
+//        }
+//        
+////        headerView.tituloHeader.text = title;
+      
+//      [1/11/14, 11:07:25 PM] Simon Forgacs: 0e1e6
+//      [1/11/14, 11:08:24 PM] Simon Forgacs: Color of the button background e0e1e6
+//      [1/11/14, 11:08:35 PM] Simon Forgacs: f2804a
+      
+//
+//        headerView.backgroundColor = [self colorWithHexString:@"00e1e6"];
         reusableview = headerView;
     }
     
@@ -226,6 +238,41 @@
 }
 
 
+-(UIColor*)colorWithHexString:(NSString*)hex
+{
+  NSString *cString = [[hex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+  
+  // String should be 6 or 8 characters
+  if ([cString length] < 6) return [UIColor grayColor];
+  
+  // strip 0X if it appears
+  if ([cString hasPrefix:@"0X"]) cString = [cString substringFromIndex:2];
+  
+  if ([cString length] != 6) return  [UIColor grayColor];
+  
+  // Separate into r, g, b substrings
+  NSRange range;
+  range.location = 0;
+  range.length = 2;
+  NSString *rString = [cString substringWithRange:range];
+  
+  range.location = 2;
+  NSString *gString = [cString substringWithRange:range];
+  
+  range.location = 4;
+  NSString *bString = [cString substringWithRange:range];
+  
+  // Scan values
+  unsigned int r, g, b;
+  [[NSScanner scannerWithString:rString] scanHexInt:&r];
+  [[NSScanner scannerWithString:gString] scanHexInt:&g];
+  [[NSScanner scannerWithString:bString] scanHexInt:&b];
+  
+  return [UIColor colorWithRed:((float) r / 255.0f)
+                         green:((float) g / 255.0f)
+                          blue:((float) b / 255.0f)
+                         alpha:1.0f];
+}
 
 
 

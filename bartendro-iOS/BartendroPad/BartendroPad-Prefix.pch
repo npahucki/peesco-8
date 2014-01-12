@@ -16,4 +16,6 @@
     #import <CoreData/CoreData.h>
     #import <AFNetworking/AFNetworking.h>
 
+    #define BARTENDRO_URL @"192.168.2.16"
+
 #endif
