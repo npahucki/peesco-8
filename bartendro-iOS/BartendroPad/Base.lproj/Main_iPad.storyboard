@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="zOT-MP-X2E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A3017" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="zOT-MP-X2E">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--Drink List View Controller-->
+        <!--Drink List View Controller - Indio Picaro and the Pissco-->
         <scene sceneID="zOT-XW-kXb">
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="Kzp-hy-oF6" customClass="DrinkListViewController" sceneMemberID="viewController">
@@ -13,27 +13,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dKT-jd-2Cc">
-                            <size key="itemSize" width="744" height="189"/>
+                            <size key="itemSize" width="755" height="152"/>
                             <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DrinkCell" id="fsU-S6-MpM" customClass="DrinkCollectionViewCell">
-                                <rect key="frame" x="12" y="114" width="744" height="189"/>
+                                <rect key="frame" x="7" y="114" width="755" height="152"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="744" height="189"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="755" height="152"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nombre del trago a servir" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPo-hu-YOE">
-                                            <rect key="frame" x="20" y="7" width="531" height="23"/>
+                                            <rect key="frame" x="120" y="20" width="531" height="23"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPj-4O-zr1">
-                                            <rect key="frame" x="535" y="95" width="189" height="74"/>
+                                            <rect key="frame" x="642" y="20" width="93" height="112"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title="Servir">
@@ -44,18 +44,24 @@
                                                 <action selector="pourDrink:" destination="fsU-S6-MpM" eventType="touchUpInside" id="Zor-D7-3FG"/>
                                             </connections>
                                         </button>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" text="Descripcion del trago a servir, esta puede venir con la lista de ingredientes, con que se puede tomar y como " translatesAutoresizingMaskIntoConstraints="NO" id="yIW-UW-uun">
-                                            <rect key="frame" x="13" y="95" width="509" height="74"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="103973111.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="JnF-W0-35V">
+                                            <rect key="frame" x="20" y="20" width="92" height="112"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPo-bB-4Rw">
+                                            <rect key="frame" x="120" y="56" width="499" height="76"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" red="0.72607678174972534" green="0.65383562152778518" blue="0.51918751732262025" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="drinkDescription" destination="yIW-UW-uun" id="eGy-tS-q9S"/>
+                                    <outlet property="drinkDescription" destination="yPo-bB-4Rw" id="1jp-Px-xcD"/>
                                     <outlet property="drinkName" destination="WPo-hu-YOE" id="PcF-sI-yYH"/>
                                 </connections>
                             </collectionViewCell>
@@ -71,6 +77,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <color key="backgroundColor" red="1" green="0.89726626529999998" blue="0.77238538639999998" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <outlet property="tituloHeader" destination="lWE-xK-ZDu" id="Ilr-15-JOr"/>
                             </connections>
@@ -80,7 +87,7 @@
                             <outlet property="delegate" destination="Kzp-hy-oF6" id="81h-G5-hC0"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="VQq-tn-oqa"/>
+                    <navigationItem key="navigationItem" title="Indio Picaro and the Pissco" id="VQq-tn-oqa"/>
                     <connections>
                         <outlet property="DrinksMenu" destination="qDw-OU-Acw" id="1JC-eq-1GY"/>
                     </connections>
@@ -108,6 +115,9 @@
             <point key="canvasLocation" x="-181" y="-293"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="103973111.jpg" width="2577" height="3866"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
         <simulatedOrientationMetrics key="orientation"/>

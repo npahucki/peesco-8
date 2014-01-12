@@ -28,6 +28,7 @@
 		D6AD5352184E9718006D09F5 /* BartendroPadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6AD5351184E9718006D09F5 /* BartendroPadTests.m */; };
 		D6E5432E185945AA003D5FD5 /* Drink+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E5432D185945AA003D5FD5 /* Drink+Helper.m */; };
 		D6E5433118594E17003D5FD5 /* DrinkCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E5433018594E17003D5FD5 /* DrinkCollectionViewCell.m */; };
+		E8EABE4818822ABF00A70DC4 /* 103973111.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE4718822ABF00A70DC4 /* 103973111.jpg */; };
 		F06750A60C844A5C8195698B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05332AF241CA4D1499505A5D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		D6E5432D185945AA003D5FD5 /* Drink+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Drink+Helper.m"; sourceTree = "<group>"; };
 		D6E5432F18594E17003D5FD5 /* DrinkCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrinkCollectionViewCell.h; sourceTree = "<group>"; };
 		D6E5433018594E17003D5FD5 /* DrinkCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrinkCollectionViewCell.m; sourceTree = "<group>"; };
+		E8EABE4718822ABF00A70DC4 /* 103973111.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 103973111.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,17 +151,18 @@
 		D6AD5329184E9717006D09F5 /* BartendroPad */ = {
 			isa = PBXGroup;
 			children = (
+				D6AD5335184E9717006D09F5 /* Main_iPhone.storyboard */,
 				D6A1B00E184EAAD10095CD6C /* CoreData */,
 				D6AD5332184E9717006D09F5 /* AppDelegate.h */,
 				D6AD5333184E9717006D09F5 /* AppDelegate.m */,
-				D6AD5335184E9717006D09F5 /* Main_iPhone.storyboard */,
 				D6AD5338184E9717006D09F5 /* Main_iPad.storyboard */,
+				D6AD533B184E9717006D09F5 /* DrinkListViewController.h */,
+				D6AD533C184E9717006D09F5 /* DrinkListViewController.m */,
 				D65E4D09185E5F5F00280DD2 /* HeaderCollectionReusableView.h */,
 				D65E4D0A185E5F5F00280DD2 /* HeaderCollectionReusableView.m */,
 				D6E5432F18594E17003D5FD5 /* DrinkCollectionViewCell.h */,
 				D6E5433018594E17003D5FD5 /* DrinkCollectionViewCell.m */,
-				D6AD533B184E9717006D09F5 /* DrinkListViewController.h */,
-				D6AD533C184E9717006D09F5 /* DrinkListViewController.m */,
+				E8EABE4718822ABF00A70DC4 /* 103973111.jpg */,
 				D6AD533E184E9717006D09F5 /* Images.xcassets */,
 				D6AD532A184E9717006D09F5 /* Supporting Files */,
 			);
@@ -276,6 +279,7 @@
 			files = (
 				D6AD533A184E9717006D09F5 /* Main_iPad.storyboard in Resources */,
 				D6AD533F184E9717006D09F5 /* Images.xcassets in Resources */,
+				E8EABE4818822ABF00A70DC4 /* 103973111.jpg in Resources */,
 				D6AD5337184E9717006D09F5 /* Main_iPhone.storyboard in Resources */,
 				D6AD532E184E9717006D09F5 /* InfoPlist.strings in Resources */,
 			);

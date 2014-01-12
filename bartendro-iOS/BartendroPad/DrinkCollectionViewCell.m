@@ -32,8 +32,6 @@
 */
 
 -(void)populateUIwithDatafrom:(Drink *)aDrink{
-
-    self.backgroundColor = [UIColor whiteColor];
     self.drinkDescription.text = aDrink.desc;
     self.drinkName.text = aDrink.name;
     
@@ -44,7 +42,7 @@
 
 - (IBAction)pourDrink:(id)sender {
 
-    NSString * get = [NSString stringWithFormat:@"http://localhost:8080/ws/drink/%@",self.drink.drink_id];
+    NSString * get = [NSString stringWithFormat:@"http://192.168.2.16/ws/drink/%@",self.drink.drink_id];
     
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
 

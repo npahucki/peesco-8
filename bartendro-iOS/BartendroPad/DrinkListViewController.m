@@ -35,11 +35,11 @@
     
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
     
-    [manager GET:@"http://localhost:8080/ws/drink/dindex"
+    [manager GET:@"http://192.168.2.16/ws/drink/dindex"
       parameters:nil
      
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             //NSLog(@"JSON: %@", responseObject);
+             NSLog(@"JSON: %@", responseObject);
              
              NSArray * td = [[[responseObject objectForKey:@"AllDrinks"] objectAtIndex:0] objectForKey:@"topDrinks"];
              NSArray * od = [[[responseObject objectForKey:@"AllDrinks"] objectAtIndex:1] objectForKey:@"otherDrinks"];
