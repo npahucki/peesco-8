@@ -194,25 +194,27 @@
 -(void) serveDrinkWithId:(int)drinkId
 {
   MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view.window];
-  hud.mode = MBProgressHUDModeText;
+  hud.mode = MBProgressHUDModeCustomView;
   hud.labelText = @"Sirviendo...";
   hud.labelFont = [UIFont fontWithName:@"DIN Alternate" size:30];
   hud.margin = 50.f;
-  hud.minSize = CGSizeMake(200.f, 200.f);
-  hud.color = [self colorWithHexString:@"f2804a"];
+  hud.minSize = CGSizeMake(150.f, 150.f);
+  //hud.color = [self colorWithHexString:@"f2804a"];
   hud.removeFromSuperViewOnHide = YES;
+  hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ServingNow.png"]];
   [self.view.window addSubview:hud];
   [hud show:YES];
 
-  NSString * get = [NSString stringWithFormat:@"http://%@/ws/drink/%d",BARTENDRO_URL,  drinkId];
-  NSLog(@"Calling : %@", get);
   
+  
+  
+  NSString * get = [NSString stringWithFormat:@"http://%@/ws/drink/%d",BARTENDRO_URL,  drinkId];
   AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+  // This API simply returns 'ok' as text/html
+  manager.responseSerializer = [AFHTTPResponseSerializer serializer];
   
   [manager GET:get
     parameters:nil
-   
-   
        success:^(AFHTTPRequestOperation *operation, id responseObject) {
          NSLog(@"JSON: %@", responseObject);
          [hud hide:YES];

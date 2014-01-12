@@ -15,7 +15,7 @@ from bartendro.errors import SerialIOError
 BAUD_RATE       = 9600
 DEFAULT_TIMEOUT = 2 # in seconds
 
-MAX_DISPENSERS = 15
+MAX_DISPENSERS = 8
 SHOT_TICKS     = 20
 
 RAW_PACKET_SIZE      = 10
