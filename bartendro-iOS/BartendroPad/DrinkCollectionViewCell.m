@@ -34,33 +34,35 @@
 
 -(void)populateUIwithDatafrom:(Drink *)aDrink{
   
+  // If you want rounded corners
+  //[self.layer setCornerRadius:10.0f];
+  //[self.pourButton.layer setCornerRadius:10.0f];
+
   
   self.drinkDescription.text = aDrink.desc;
   self.drinkDescription.textColor = [UIColor lightGrayColor];
   self.drinkDescription.font = [UIFont fontWithName:@"DIN Alternate" size:20];
-  [self.layer setCornerRadius:10.0f];
-  
+
+  // Drop shadow: NOTE: does not seem to work at all!
   [self.layer setShadowColor:[UIColor blackColor].CGColor];
   [self.layer setShadowOpacity:0.8];
   [self.layer setShadowRadius:3.0];
   [self.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
-  
-  [self.pourButton.layer setCornerRadius:10.0f];
-  
-  
+  self.drinkImageView.image = [self getDrinkImageName:aDrink];
   self.drinkName.text = aDrink.name;
-  
-    [self setDrink:aDrink];
+  [self setDrink:aDrink];
 
 }
 
 
 - (IBAction)pourDrink:(id)sender {
- 
   [self.serveDrinkDelegate serveDrinkWithId:[self.drink.drink_id intValue]];
-
 }
 
+-(UIImage*) getDrinkImageName:(Drink*) aDrink {
+  NSString * imageName = [[NSString alloc] initWithFormat:@"drink_%@", aDrink.drink_id];
+  return [UIImage imageNamed:imageName];
+}
 
 -(void) getDrinkDescription:(int)drinkID{
     

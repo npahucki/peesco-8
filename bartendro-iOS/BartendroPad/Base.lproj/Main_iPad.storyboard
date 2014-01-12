@@ -58,12 +58,20 @@
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="drink_72.png" translatesAutoresizingMaskIntoConstraints="NO" id="or4-9t-3hH">
+                                            <rect key="frame" x="0.0" y="0.0" width="146" height="145"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" none="YES" image="YES" notEnabled="YES"/>
+                                            </accessibility>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="drinkDescription" destination="yPo-bB-4Rw" id="1jp-Px-xcD"/>
+                                    <outlet property="drinkImageView" destination="or4-9t-3hH" id="vGG-ae-jat"/>
                                     <outlet property="drinkName" destination="WPo-hu-YOE" id="PcF-sI-yYH"/>
                                     <outlet property="pourButton" destination="mPj-4O-zr1" id="XTa-qd-u17"/>
                                 </connections>
@@ -98,6 +106,7 @@
     <resources>
         <image name="Pissco-1-Element.jpg" width="1470" height="291"/>
         <image name="Pissco-1-Logo.jpg" width="519" height="191"/>
+        <image name="drink_72.png" width="446" height="466"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>

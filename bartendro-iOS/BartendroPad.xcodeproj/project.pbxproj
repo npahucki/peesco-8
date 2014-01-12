@@ -28,10 +28,17 @@
 		D6AD5352184E9718006D09F5 /* BartendroPadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6AD5351184E9718006D09F5 /* BartendroPadTests.m */; };
 		D6E5432E185945AA003D5FD5 /* Drink+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E5432D185945AA003D5FD5 /* Drink+Helper.m */; };
 		D6E5433118594E17003D5FD5 /* DrinkCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E5433018594E17003D5FD5 /* DrinkCollectionViewCell.m */; };
-		E8EABE4818822ABF00A70DC4 /* 103973111.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE4718822ABF00A70DC4 /* 103973111.jpg */; };
 		E8EABE4A188230BF00A70DC4 /* Pissco-1-Element.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE49188230BF00A70DC4 /* Pissco-1-Element.jpg */; };
 		E8EABE4C188231B800A70DC4 /* Pissco-1-Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE4B188231B800A70DC4 /* Pissco-1-Logo.jpg */; };
 		E8EABE4E1882E17F00A70DC4 /* ServingNow.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE4D1882E17F00A70DC4 /* ServingNow.png */; };
+		E8EABE591883428A00A70DC4 /* drink_74.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE511883428A00A70DC4 /* drink_74.png */; };
+		E8EABE5A1883428A00A70DC4 /* drink_71.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE521883428A00A70DC4 /* drink_71.png */; };
+		E8EABE5B1883428A00A70DC4 /* drink_73.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE531883428A00A70DC4 /* drink_73.png */; };
+		E8EABE5C1883428A00A70DC4 /* drink_69.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE541883428A00A70DC4 /* drink_69.png */; };
+		E8EABE5D1883428A00A70DC4 /* drink_72.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE551883428A00A70DC4 /* drink_72.png */; };
+		E8EABE5E1883428A00A70DC4 /* drink_44.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE561883428A00A70DC4 /* drink_44.png */; };
+		E8EABE5F1883428A00A70DC4 /* drink_81.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE571883428A00A70DC4 /* drink_81.png */; };
+		E8EABE601883428A00A70DC4 /* drink_3.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EABE581883428A00A70DC4 /* drink_3.png */; };
 		F06750A60C844A5C8195698B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05332AF241CA4D1499505A5D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -78,10 +85,17 @@
 		D6E5432D185945AA003D5FD5 /* Drink+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Drink+Helper.m"; sourceTree = "<group>"; };
 		D6E5432F18594E17003D5FD5 /* DrinkCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrinkCollectionViewCell.h; sourceTree = "<group>"; };
 		D6E5433018594E17003D5FD5 /* DrinkCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrinkCollectionViewCell.m; sourceTree = "<group>"; };
-		E8EABE4718822ABF00A70DC4 /* 103973111.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 103973111.jpg; sourceTree = "<group>"; };
 		E8EABE49188230BF00A70DC4 /* Pissco-1-Element.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Pissco-1-Element.jpg"; sourceTree = "<group>"; };
 		E8EABE4B188231B800A70DC4 /* Pissco-1-Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Pissco-1-Logo.jpg"; sourceTree = "<group>"; };
 		E8EABE4D1882E17F00A70DC4 /* ServingNow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ServingNow.png; sourceTree = "<group>"; };
+		E8EABE511883428A00A70DC4 /* drink_74.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drink_74.png; sourceTree = "<group>"; };
+		E8EABE521883428A00A70DC4 /* drink_71.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drink_71.png; sourceTree = "<group>"; };
+		E8EABE531883428A00A70DC4 /* drink_73.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drink_73.png; sourceTree = "<group>"; };
+		E8EABE541883428A00A70DC4 /* drink_69.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drink_69.png; sourceTree = "<group>"; };
+		E8EABE551883428A00A70DC4 /* drink_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drink_72.png; sourceTree = "<group>"; };
+		E8EABE561883428A00A70DC4 /* drink_44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drink_44.png; sourceTree = "<group>"; };
+		E8EABE571883428A00A70DC4 /* drink_81.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drink_81.png; sourceTree = "<group>"; };
+		E8EABE581883428A00A70DC4 /* drink_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drink_3.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,8 +181,15 @@
 				D65E4D0A185E5F5F00280DD2 /* HeaderCollectionReusableView.m */,
 				D6E5432F18594E17003D5FD5 /* DrinkCollectionViewCell.h */,
 				D6E5433018594E17003D5FD5 /* DrinkCollectionViewCell.m */,
-				E8EABE4718822ABF00A70DC4 /* 103973111.jpg */,
 				E8EABE4D1882E17F00A70DC4 /* ServingNow.png */,
+				E8EABE511883428A00A70DC4 /* drink_74.png */,
+				E8EABE521883428A00A70DC4 /* drink_71.png */,
+				E8EABE531883428A00A70DC4 /* drink_73.png */,
+				E8EABE541883428A00A70DC4 /* drink_69.png */,
+				E8EABE551883428A00A70DC4 /* drink_72.png */,
+				E8EABE561883428A00A70DC4 /* drink_44.png */,
+				E8EABE571883428A00A70DC4 /* drink_81.png */,
+				E8EABE581883428A00A70DC4 /* drink_3.png */,
 				E8EABE4B188231B800A70DC4 /* Pissco-1-Logo.jpg */,
 				E8EABE49188230BF00A70DC4 /* Pissco-1-Element.jpg */,
 				D6AD533E184E9717006D09F5 /* Images.xcassets */,
@@ -287,13 +308,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8EABE4E1882E17F00A70DC4 /* ServingNow.png in Resources */,
+				E8EABE591883428A00A70DC4 /* drink_74.png in Resources */,
+				E8EABE601883428A00A70DC4 /* drink_3.png in Resources */,
 				E8EABE4C188231B800A70DC4 /* Pissco-1-Logo.jpg in Resources */,
+				E8EABE5F1883428A00A70DC4 /* drink_81.png in Resources */,
 				D6AD533A184E9717006D09F5 /* Main_iPad.storyboard in Resources */,
+				E8EABE5C1883428A00A70DC4 /* drink_69.png in Resources */,
 				E8EABE4A188230BF00A70DC4 /* Pissco-1-Element.jpg in Resources */,
 				D6AD533F184E9717006D09F5 /* Images.xcassets in Resources */,
-				E8EABE4818822ABF00A70DC4 /* 103973111.jpg in Resources */,
+				E8EABE5B1883428A00A70DC4 /* drink_73.png in Resources */,
 				D6AD5337184E9717006D09F5 /* Main_iPhone.storyboard in Resources */,
+				E8EABE5E1883428A00A70DC4 /* drink_44.png in Resources */,
 				D6AD532E184E9717006D09F5 /* InfoPlist.strings in Resources */,
+				E8EABE5A1883428A00A70DC4 /* drink_71.png in Resources */,
+				E8EABE5D1883428A00A70DC4 /* drink_72.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

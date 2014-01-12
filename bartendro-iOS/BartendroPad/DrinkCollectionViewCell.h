@@ -30,5 +30,6 @@
 
 - (void) populateUIwithDatafrom:(Drink *)aDrink;
 
+@property (strong, nonatomic) IBOutlet UIImageView *drinkImageView;
 
 @end

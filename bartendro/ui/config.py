@@ -6,7 +6,7 @@ login_passwd           = "booz3m3up"
 
 # Drink screen options
 metric         = 1
-drink_size     = 80   # in ml
+drink_size     = 150   # in ml
 show_strength  = True
 show_size      = True
 show_taster    = False
