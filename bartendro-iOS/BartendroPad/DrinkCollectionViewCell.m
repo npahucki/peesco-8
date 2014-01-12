@@ -43,36 +43,52 @@
 
 
 - (IBAction)pourDrink:(id)sender {
-    
-    NSLog(@"Pouring a drink called: %@", self.drink.name);
-    NSLog(@"With the ID: %@", self.drink.drink_id);
-    NSLog(@"With ingredients: %@", self.drink.ingredients);
 
-    //[self getDrinkDescription:self.drink.drink_id.intValue];
+    NSString * get = [NSString stringWithFormat:@"http://localhost:8080/ws/drink/%@",self.drink.drink_id];
     
-    
-    NSArray * ing = self.drink.ingredients;
-    
-    NSString * args = [[NSString alloc] init];
-    
-    for (int i=0; i < ing.count; i++) {
-        
-        NSLog(@"ingrediente %d", i );
-        
-        if (i == 0) {
-            args = @"?";
-        }else{
-            args = [NSString stringWithFormat:@"%@%@",args, @"&"];
-        }
-        
-        NSDictionary * anIng = [ing objectAtIndex:i];
-        
-        NSString * boz = [NSString stringWithFormat:@"booze%@=19",[anIng objectForKey:@"id"]];
-        args = [NSString stringWithFormat:@"%@%@",args, boz];
-        NSLog(@"args: %@", args);
-        NSLog(@"/ws/drink/%@%@", [self.drink.drink_id stringValue],args);
-        
-    }
+    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+
+    [manager GET:get
+      parameters:nil
+     
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSLog(@"JSON: %@", responseObject);
+         }
+     
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Error: %@", error);
+         }
+     ];
+
+//    NSLog(@"Pouring a drink called: %@", self.drink.name);
+//    NSLog(@"With the ID: %@", self.drink.drink_id);
+//    NSLog(@"With ingredients: %@", self.drink.ingredients);
+//
+//    //[self getDrinkDescription:self.drink.drink_id.intValue];
+//    
+//    
+//    NSArray * ing = self.drink.ingredients;
+//    
+//    NSString * args = [[NSString alloc] init];
+//    
+//    for (int i=0; i < ing.count; i++) {
+//        
+//        NSLog(@"ingrediente %d", i );
+//        
+//        if (i == 0) {
+//            args = @"?";
+//        }else{
+//            args = [NSString stringWithFormat:@"%@%@",args, @"&"];
+//        }
+//        
+//        NSDictionary * anIng = [ing objectAtIndex:i];
+//        
+//        NSString * boz = [NSString stringWithFormat:@"booze%@=19",[anIng objectForKey:@"id"]];
+//        args = [NSString stringWithFormat:@"%@%@",args, boz];
+//        NSLog(@"args: %@", args);
+//        NSLog(@"/ws/drink/%@%@", [self.drink.drink_id stringValue],args);
+//        
+//    }
 
     
 
