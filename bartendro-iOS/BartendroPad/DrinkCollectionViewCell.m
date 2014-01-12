@@ -41,8 +41,7 @@
   
   self.drinkDescription.text = aDrink.desc;
   self.drinkDescription.textColor = [UIColor lightGrayColor];
-  self.drinkDescription.font = [UIFont fontWithName:@"DIN Alternate" size:20];
-  self.drinkDescription.font = [UIFont fontWithName:@"DIN Alternate Condensed" size:18];
+  self.drinkDescription.font = [UIFont fontWithName:@"DIN Condensed" size:18];
   [self.layer setCornerRadius:10.0f];
   
   // Drop shadow: NOTE: does not seem to work at all!
