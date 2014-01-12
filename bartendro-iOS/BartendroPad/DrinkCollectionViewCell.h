@@ -9,13 +9,20 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "Drink.h"
+#import "MBProgressHUD.h"
+
+@protocol ServeDrinkDelegate <NSObject>
+
+-(void) serveDrinkWithId: (int) drinkId;
+
+@end
 
 @interface DrinkCollectionViewCell : UICollectionViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel * drinkName;
 @property (strong, nonatomic) IBOutlet UITextView * drinkDescription;
 @property (strong, nonatomic) Drink * drink;
-
+@property (weak,nonatomic) id <ServeDrinkDelegate> serveDrinkDelegate;
 @property (strong, nonatomic) IBOutlet UIButton *pourButton;
 
 

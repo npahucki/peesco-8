@@ -12,6 +12,11 @@
 #import "DrinkCollectionViewCell.h"
 #import "HeaderCollectionReusableView.h"
 
-@interface DrinkListViewController : UICollectionViewController
+
+
+@interface DrinkListViewController : UICollectionViewController <ServeDrinkDelegate>
+
+
+
 
 @end

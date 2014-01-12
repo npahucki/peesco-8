@@ -23,6 +23,8 @@
 
 - (void)viewDidLoad
 {
+  
+  
     [super viewDidLoad];
     
     [self getDrinkList];
@@ -45,13 +47,13 @@
              
              NSArray * td = [[[responseObject objectForKey:@"AllDrinks"] objectAtIndex:0] objectForKey:@"topDrinks"];
              NSArray * od = [[[responseObject objectForKey:@"AllDrinks"] objectAtIndex:1] objectForKey:@"otherDrinks"];
-           NSMutableArray * newarray = [[NSMutableArray alloc] initWithArray:td];
-           [newarray addObjectsFromArray:od];
+           NSMutableArray * allDrinks = [[NSMutableArray alloc] initWithArray:td];
+           [allDrinks addObjectsFromArray:od];
            
              //             NSLog(@"top drinks  : %@", td);
              //             NSLog(@"Other drinks  : %@", td);
            
-             [self fillTopDrinkListFromJSON:newarray];
+             [self fillTopDrinkListFromJSON:allDrinks];
 //             [self fillOtherDrinkListFromJSON:od];
            
              
@@ -175,8 +177,10 @@
 //            break;
 //    }
     d = [self.topDrinkList objectAtIndex:indexPath.row];
+  
     [cell populateUIwithDatafrom:d];
-    
+    cell.serveDrinkDelegate=self;
+   
     return cell;
 }
 
@@ -187,7 +191,40 @@
 // return [[UICollectionReusableView alloc] init];
 //}
 
+-(void) serveDrinkWithId:(int)drinkId
+{
+  MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view.window];
+  hud.mode = MBProgressHUDModeText;
+  hud.labelText = @"Sirviendo...";
+  hud.labelFont = [UIFont fontWithName:@"DIN Alternate" size:30];
+  hud.margin = 50.f;
+  hud.minSize = CGSizeMake(200.f, 200.f);
+  hud.color = [self colorWithHexString:@"f2804a"];
+  hud.removeFromSuperViewOnHide = YES;
+  [self.view.window addSubview:hud];
+  [hud show:YES];
 
+  NSString * get = [NSString stringWithFormat:@"http://%@/ws/drink/%d",BARTENDRO_URL,  drinkId];
+  NSLog(@"Calling : %@", get);
+  
+  AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+  
+  [manager GET:get
+    parameters:nil
+   
+   
+       success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         NSLog(@"JSON: %@", responseObject);
+         [hud hide:YES];
+       }
+   
+       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"Error trying to serve drink: %@", error);
+         [hud hide:YES];
+       }
+   ];
+ 
+}
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
