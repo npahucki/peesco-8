@@ -12,19 +12,21 @@ pol= pololu.Pololu(ser)
 
 indios = [None] * 8
 indios[0] = indio.Indio(pol,0,0)
-indios[1] = indio.Indio(pol,0,1)
+indios[1] = indio.Indio(pol,0,1, 80)
 indios[2] = indio.Indio(pol,0,2)
 indios[3] = indio.Indio(pol,0,3)
 indios[4] = indio.Indio(pol,1,0)
 indios[5] = indio.Indio(pol,1,1)
 indios[6] = indio.Indio(pol,1,2)
-indios[7] = indio.Indio(pol,1,3)
+indios[7] = indio.Indio(pol,1,3, 70)
 
 cmd = sys.argv[1]   
 indio = indios[int(sys.argv[2])]
 
 if cmd == "stand":
     indio.stand()
+elif cmd == "pee":
+    indio.pee()
 elif cmd == "sit":
     indio.sit()
 elif cmd == "center":

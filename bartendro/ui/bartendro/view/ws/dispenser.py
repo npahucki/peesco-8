@@ -13,7 +13,7 @@ def ws_dispenser_on(disp):
     if app.options.must_login_to_dispense and not current_user.is_authenticated():
         return "login required"
 
-    app.indios[disp -1].stand()
+    app.indios[disp -1].pee()
     sleep(.5)
     app.driver.start(disp - 1)
     return "ok\n"
@@ -31,7 +31,7 @@ def ws_dispenser_off(disp):
 
 @app.route('/ws/dispenser/<int:disp>/test')
 def ws_dispenser_test(disp):
-    app.indios[disp -1].stand()
+    app.indios[disp -1].pee()
     sleep(.5)
     app.driver.dispense_ticks(disp - 1, app.options.test_dispense_ml * TICKS_PER_ML)
     while True:
@@ -47,5 +47,5 @@ def ws_dispenser_clean():
     if app.options.must_login_to_dispense and not current_user.is_authenticated():
         return "login required"
     # Commented out until we make indios stand first!    
-    #app.mixer.clean()
+    app.mixer.clean()
     return "ok\n"

@@ -24,7 +24,7 @@ DISPENSER_OUT     = 1
 DISPENSER_OK      = 0
 DISPENSER_WARNING = 2
 
-CLEAN_CYCLE_MAX_PUMPS = 5   # The maximum number of pups to run at any one time
+CLEAN_CYCLE_MAX_PUMPS = 4   # The maximum number of pumps to run at any one time
 CLEAN_CYCLE_DURATION  = 30  # in seconds for each pump
 
 class Mixer(object):
@@ -233,7 +233,7 @@ class Mixer(object):
         for r in recipe:
              indio = app.indios[r['dispenser'] - 1]
              indio.center()
-             indio.stand()
+             indio.pee()
         sleep(1)                        # Make sure all indios are standing and create a little suspense 
 
          # Now start the actual liquid flowing...
@@ -334,6 +334,11 @@ class CleanCycle(Thread):
         self.mixer = mixer
 
     def run(self):
+        # All Indios must stand for this
+        for idx, indio in enumerate(app.indios):
+            indio.center()
+            indio.pee()
+        
         disp_on_times = []
         disp_off_times = []
         for i in xrange(self.mixer.disp_count):
@@ -350,6 +355,11 @@ class CleanCycle(Thread):
                     self.mixer.driver.start(i)
             sleep(1)
         self.mixer.led_idle()
+        # All Indios may sit now
+        for idx, indio in enumerate(app.indios):
+            indio.center()
+            indio.sit()
+        
 
 class FlashGreenLeds(Thread):
     def __init__(self, mixer):

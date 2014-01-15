@@ -26,10 +26,11 @@ class Indio:
     DEFAULT_ACCEL = 0
     
     # num is the number of he indio (0-N)
-    def __init__(self,pololu,device,num,offset_top = 0, offset_bottom = 0, offset_left = 0, offset_right = 0):
+    def __init__(self,pololu,device,num,offset_pee=30,offset_top = 0, offset_bottom = 0, offset_left = 0, offset_right = 0):
         self.__pololu = pololu
         self.__device = device
         self.__num = num
+        self.__offset_pee = offset_pee
         self.__top = Indio.TOP - offset_top
         self.__bottom = Indio.BOTTOM + offset_bottom
         self.__left = Indio.LEFT - offset_left
@@ -62,7 +63,6 @@ class Indio:
     def go_home(self):
         packet=chr(0xAA)+chr(self.__device)+chr(cmd)
         self.__pololu.send_cmd(packet)
-       
     
     def move_v(self,pos,speed, accel):
         if pos <0 or pos > 254:
@@ -120,6 +120,10 @@ class Indio:
     # Indio stand completely
     def stand(self, offset = 0, speed = DEFAULT_SPEED, accel = DEFAULT_ACCEL):
         self.move_v(self.__top - offset, speed, accel)
+    
+    # Indio in peeing position, which may be lower than fully standing. 
+    def pee(self):
+        self.stand(self.__offset_pee)
     
     # Indio center
     def center(self, offset = 0,speed = DEFAULT_SPEED, accel = DEFAULT_ACCEL):

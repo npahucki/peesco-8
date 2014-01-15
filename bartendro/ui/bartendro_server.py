@@ -63,16 +63,17 @@ try:
     pol= pololu.Pololu(ser)
     app.indios = [None] * 8
     app.indios[0] = indio.Indio(pol,0,0)
-    app.indios[1] = indio.Indio(pol,0,1)
+    app.indios[1] = indio.Indio(pol,0,1, 80)
     app.indios[2] = indio.Indio(pol,0,2)
     app.indios[3] = indio.Indio(pol,0,3) 
     app.indios[4] = indio.Indio(pol,1,0)
     app.indios[5] = indio.Indio(pol,1,1)
     app.indios[6] = indio.Indio(pol,1,2)
-    app.indios[7] = indio.Indio(pol,1,3,20) # This guy aims a little too high
+    app.indios[7] = indio.Indio(pol,1,3, 70)
     for indio in app.indios:
         indio.sit()
         indio.center()
+        
 except RuntimeError as e:
     print
     print "Cannot configure Indios:{0} - {1}".format(e.errno, e.strerror)

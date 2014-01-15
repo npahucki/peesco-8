@@ -16,7 +16,7 @@ def ws_shotbot():
 
     indio = app.indio
     driver = app.driver
-    indio.stand()   
+    indio.pee()   
     time.sleep(1)
     indio.stand(55)
     time.sleep(.5)
